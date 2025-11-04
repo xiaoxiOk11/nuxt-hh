@@ -9,13 +9,22 @@
 
 
 <script setup>
+
 useHead({
-    title: 'Nuxt 3 Demo ABOUT',
+    title: '关于我们',
     meta: [
         {
-            name: 'description',
-            content: 'This is a demo Nuxt 3 application.'
-        }
+            name: '关于我们',
+            content: 'This is the article page of the Nuxt 3 demo application.'
+        },
+        { property: 'og:title', content: '关于我们' },
+        { property: 'og:description', content: '了解我们的公司' },
+        { property: 'og:image', content: icon },
+        { property: 'og:type', content: 'website' },
+
+    ],
+    link: [
+        { rel: 'icon', type: 'image/x-icon', href: icon }
     ]
 })
 </script>

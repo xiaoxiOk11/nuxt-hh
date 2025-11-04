@@ -34,9 +34,8 @@ useHead({
         { property: 'og:title', content: '特卖会' },
         { property: 'og:description', content: '了解我们的公司' },
         { property: 'og:image', content: icon },
-        { property: 'og:image:width', content: '1200' }, // 图片宽度 (可选)
-        { property: 'og:image:height', content: '630' },  // 图片高度 (可选，1.91:1 比例通常效果最好)
-        { property: 'og:type', content: 'article' },
+        { property: 'og:type', content: 'website' },
+
     ],
     link: [
         { rel: 'icon', type: 'image/x-icon', href: icon }
