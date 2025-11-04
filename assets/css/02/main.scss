@@ -1,0 +1,32 @@
+// assets/scss/themes/_vibrant-orange.scss
+
+// 定义活力橙主题的颜色变量
+$orange-primary: #ff9f1c;
+$orange-secondary: #ffbf69;
+$orange-background: #fffcf7;
+$orange-card-bg: #ffffff;
+$orange-text-color: #4a4a4a;
+
+// 定义主题变量 Map
+$theme-vibrant-orange: (
+  '--van-primary-color': $orange-primary,
+  '--van-background-color-light': $orange-background,
+  '--van-background': $orange-background,
+  '--van-text-color': $orange-text-color,
+  '--van-text-color-2': #8d8d8d,
+  
+  '--van-button-primary-background': $orange-primary,
+  '--van-button-primary-border-color': $orange-primary,
+  '--van-button-border-radius': 20px, // 更圆润的按钮
+  '--van-nav-bar-background': $orange-card-bg,
+  '--van-nav-bar-title-text-color': $orange-text-color,
+  '--van-card-background': $orange-card-bg,
+  '--van-card-price-color': #f4511e,
+  '--van-tag-primary-color': $orange-primary,
+  '--van-tag-border-radius': 8px,
+
+  // Custom variables
+  '--page-card-shadow': 0 4px 16px rgba(255, 159, 28, 0.2),
+  '--page-card-border-radius': 16px, // 更大的圆角
+  '--page-font-family': 'Georgia',
+);

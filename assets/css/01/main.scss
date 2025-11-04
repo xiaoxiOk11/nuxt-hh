@@ -1,0 +1,31 @@
+
+// 定义清新蓝主题的颜色变量
+$blue-primary: #3a86ff;
+$blue-background: #f7f8fa;
+$blue-card-bg: #ffffff;
+$blue-text-color: #323233;
+$blue-text-secondary: #969799;
+
+// 定义主题变量 Map
+$theme-fresh-blue: (
+  // Vant Color variables
+  '--van-primary-color': $blue-primary,
+  '--van-background-color-light': $blue-background,
+  '--van-background': $blue-background,
+  '--van-text-color': $blue-text-color,
+  '--van-text-color-2': $blue-text-secondary,
+
+  // Component specific variables
+  '--van-button-primary-background': $blue-primary,
+  '--van-button-primary-border-color': $blue-primary,
+  '--van-nav-bar-background': $blue-card-bg,
+  '--van-nav-bar-title-text-color': $blue-text-color,
+  '--van-card-background': $blue-card-bg,
+  '--van-card-price-color': $blue-primary,
+  '--van-tag-primary-color': $blue-primary,
+  
+  // Custom variables for our page
+  '--page-card-shadow': 0 8px 12px rgba(58, 134, 255, 0.1),
+  '--page-card-border-radius': 12px,
+  '--page-font-family': 'Helvetica Neue', 
+);
