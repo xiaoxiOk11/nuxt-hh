@@ -1,3 +1,27 @@
+<script setup>
+import icon from '~/assets/images/o1.png'
+
+useHead({
+    title: 'Nuxt 3 Demo 数据中心',
+    meta: [
+        {
+            name: '数据中心',
+            content: 'This is the data center page of the Nuxt 3 application.'
+
+        },
+        { property: 'og:title', content: '数据中心' },
+        { property: 'og:description', content: '了解我们的公司' },
+        { property: 'og:image', content: icon },
+        { property: 'og:image:width', content: '1200' }, // 图片宽度 (可选)
+        { property: 'og:image:height', content: '630' },  // 图片高度 (可选，1.91:1 比例通常效果最好)
+        { property: 'og:type', content: 'article' },
+    ],
+    link: [
+        { rel: 'icon', type: 'image/x-icon', href: icon }
+    ]
+})
+</script>
+
 <template>
     <div class="page-content">
         <van-nav-bar title="数据中心" left-arrow @click-left="$router.back()" />
@@ -26,6 +50,8 @@
         <div style="padding: 16px;">
             <van-button type="primary" block round>查看完整报告</van-button>
         </div>
+
+        <img :src="icon" alt="">
     </div>
 </template>
 
