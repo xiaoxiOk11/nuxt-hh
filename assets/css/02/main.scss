@@ -6,7 +6,14 @@ $orange-secondary: #ffbf69;
 $orange-background: #fffcf7;
 $orange-card-bg: #ffffff;
 $orange-text-color: #4a4a4a;
-
+.contentBtn{
+  background: skyblue;
+  border-radius: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+}
 // 定义主题变量 Map
 $theme-vibrant-orange: (
   '--van-primary-color': $orange-primary,

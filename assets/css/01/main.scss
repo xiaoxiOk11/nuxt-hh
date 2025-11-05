@@ -5,7 +5,14 @@ $blue-background: #f7f8fa;
 $blue-card-bg: #ffffff;
 $blue-text-color: #323233;
 $blue-text-secondary: #969799;
-
+.contentBtn{
+  background: pink;
+  border-radius: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+}
 // 定义主题变量 Map
 $theme-fresh-blue: (
   // Vant Color variables

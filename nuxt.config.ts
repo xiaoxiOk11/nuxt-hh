@@ -4,10 +4,28 @@ import { VantResolver } from "unplugin-vue-components/resolvers";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ["@/assets/css/public.scss"],
-  modules: ["@pinia/nuxt"],
 
-  // 关键1: 为了让 Vant 的 JS 函数式调用（如 showToast）的样式能被正确处理
+  // [保留] 你的全局 CSS
+  css: ["@/assets/css/public.scss"],
+
+  // [合并] 在 modules 数组中添加新的模块
+  modules: [
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt", // 新增: Pinia 持久化
+    "@nuxtjs/i18n", // 新增: i18n
+  ],
+
+  // [新增] 为 i18n 模块提供配置
+  i18n: {
+    langDir: "./locales/", // 语言文件目录
+    locales: [
+      { code: "en", iso: "en-US", name: "English", file: "en.ts" },
+      { code: "es", iso: "es-ES", name: "Español", file: "es.ts" },
+      { code: "zh", iso: "zh-CN", name: "简体中文", file: "zh.ts" },
+    ],
+    defaultLocale: "en",
+  },
+
   build: {
     transpile: ["vant"],
   },
@@ -15,11 +33,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       Components({
-        resolvers: [
-          // 关键2: 自动导入 Vant 组件，并为其导入 LESS 样式源文件
-          // 这需要你已经安装了 `less` 预处理器
-          VantResolver({ importStyle: true }),
-        ],
+        resolvers: [VantResolver({ importStyle: true })],
       }),
     ],
   },
