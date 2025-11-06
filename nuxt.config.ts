@@ -39,10 +39,8 @@ export default defineNuxtConfig({
     ],
   },
   app: {
-    pageTransition: {
-      name: "page",
-      mode: "out-in",
-    },
+    pageTransition: true, // 或者 pageTransition: {}
+    layoutTransition: true, // 同理
     head: {
       title: "My App",
       meta: [

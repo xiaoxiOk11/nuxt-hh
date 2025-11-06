@@ -1,22 +1,120 @@
+<!-- app.vue -->
 <template>
-  <div class="pageContainer">
-    <NuxtPage />
+  <div>
+    <!-- NuxtPage 现在会使用我们动态生成的 pageTransition 对象 -->
+    <NuxtPage class="pageContainer" :transition="pageTransition" />
 
-    <van-backTop ></van-backTop>
+    <!-- 这个组件不受页面过渡影响 -->
+    <van-backTop></van-backTop>
   </div>
 </template>
 
-
 <script setup>
+import { ref, reactive, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { themeRoute } from '~/stores/theme'
-// 确保在 setup 顶层调用 store
-const useThemeRoute = themeRoute();
+import gsap from 'gsap'
+
+// --- 1. 保留你现有的主题切换逻辑 ---
+const useThemeRoute = themeRoute()
 watch(
   () => useThemeRoute.fileRoute,
   (newRoute) => {
-    console.log('Theme route changed to:', newRoute);
-    import(`~/assets/css/${newRoute}/main.scss`);
+    // 提示：动态 import CSS 可能会有副作用和加载顺序问题。
+    // 在 nuxt.config.ts 中通过 body aatributes 或 useHead 动态添加 class/style 可能是更稳健的方式。
+    // 但我们暂时保留你的原始逻辑。
+    console.log('Theme route changed to:', newRoute)
+    if (newRoute) {
+      import(`~/assets/css/${newRoute}/main.scss`)
+    }
   },
   { immediate: true }
-);
+)
+
+// --- 2. 定义你的动画库 (可以随意增删改) ---
+const animations = [
+  {
+    name: 'slide-up',
+    enter: { opacity: 0, y: 50 },
+    leave: { opacity: 0, y: -50 }
+  },
+  {
+    name: 'slide-down',
+    enter: { opacity: 0, y: -50 },
+    leave: { opacity: 0, y: 50 }
+  },
+  {
+    name: 'slide-left',
+    enter: { opacity: 0, x: 100 },
+    leave: { opacity: 0, x: -100 }
+  },
+  {
+    name: 'zoom-in',
+    enter: { opacity: 0, scale: 0.8 },
+    leave: { opacity: 0, scale: 0.8 }
+  },
+  {
+    name: 'fade',
+    enter: { opacity: 0 },
+    leave: { opacity: 0 }
+  }
+]
+
+let lastAnimationIndex = -1 // 用于避免连续两次动画相同
+const getRandomAnimation = () => {
+  let randomIndex
+  do {
+    randomIndex = Math.floor(Math.random() * animations.length)
+  } while (animations.length > 1 && randomIndex === lastAnimationIndex)
+
+  lastAnimationIndex = randomIndex
+  return animations[randomIndex]
+}
+
+// --- 3. 创建响应式状态来存储当前要使用的动画 ---
+const currentAnimation = ref(getRandomAnimation())
+
+// --- 4. 在每次路由切换前，选择一个新的随机动画 ---
+const router = useRouter()
+router.beforeEach((to, from, next) => {
+  // 仅在实际发生页面切换时才更新动画（跳过初始加载）
+  if (from.name) {
+    currentAnimation.value = getRandomAnimation()
+  }
+  next() // 必须调用 next() 以继续导航
+})
+
+// --- 5. 定义最终的、动态的 pageTransition 对象 ---
+// 这个对象将从 currentAnimation 中读取动画参数
+const pageTransition = reactive({
+  name: 'dynamic-gsap', // 给一个基础名字
+  mode: 'out-in',
+
+  onEnter(el, done) {
+    // 使用当前选定动画的 enter 参数
+    gsap.from(el, {
+      duration: 0.5,
+      ease: 'power2.inOut',
+      ...currentAnimation.value.enter,
+      onComplete: done
+    })
+  },
+
+  onLeave(el, done) {
+    // 使用当前选定动画的 leave 参数
+    gsap.to(el, {
+      duration: 0.5,
+      ease: 'power2.inOut',
+      ...currentAnimation.value.leave,
+      onComplete: done
+    })
+  }
+})
 </script>
+
+<style>
+/* 可选：为了防止页面切换时因滚动条消失/出现导致的页面抖动 */
+html.page-leave-active {
+  overflow: hidden;
+}
+</style>
