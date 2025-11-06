@@ -2,18 +2,17 @@
     padding: 0; 
     margin: 0;
 }
+body{
+    --pageWidth:400px;
 
+}
 .pageContainer{
-    max-width: 580px;
+    max-width: var(--pageWidth);
     // background: pink;
     margin: 0 auto;
     min-height: 100vh;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-}
 
 ul,
 ol li {

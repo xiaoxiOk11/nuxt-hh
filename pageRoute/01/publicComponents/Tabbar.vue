@@ -122,6 +122,7 @@ router.afterEach(() => {
     max-width: var(--maxWidth);
     left: 50%;
     z-index: 990 !important;
+    max-width: var(--pageWidth);
     transform: translateX(-50%);
     background: #312D3D;
     :deep(.van-tabbar-item--active) {
