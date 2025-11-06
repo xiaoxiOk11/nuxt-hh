@@ -26,25 +26,25 @@ const tabs = computed(() => {
         },
         {
             name:'Quantify',
-            path: '',
+            path: '/tabbar/quantify',
             icon: t2Icon,
             selectIcon: t22Icon,
         },
         {
             name:'Invest',
-            path: '',
+            path: '/tabbar/invest',
             icon: t3Icon,
             selectIcon: t33Icon,
         },
         {
             name:'Contract',
-            path: '',
+             path: '/tabbar/contract',
             icon: t4Icon,
             selectIcon: t44Icon,
         },
         {
             name: 'Me',
-            path: '',
+             path: '/tabbar/me',
             icon: t5Icon,
             selectIcon: t55Icon,
         }

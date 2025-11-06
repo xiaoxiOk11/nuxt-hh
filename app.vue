@@ -1,6 +1,8 @@
 <template>
   <div class="pageContainer">
     <NuxtPage />
+
+    <van-backTop ></van-backTop>
   </div>
 </template>
 

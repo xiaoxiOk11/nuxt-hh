@@ -57,6 +57,12 @@
                     </div>
                 </div>
             </div>
+
+            <div class="mt20 infoTitle">
+                <div class="title">
+                    ajskdjkasjdklqwjeklq
+                </div>
+            </div>
         </div>
         <Tabbar></Tabbar>
     </div>
@@ -106,6 +112,17 @@ const parnterList = computed(() => {
     background: url('~/assets/images/01/index/downImg.png') no-repeat;
     background-size: contain;
     background-position: center;
+}
+.infoTitle{
+    background: #F6F3FC;
+    border-radius: 15px;
+    padding: 10px;
+    .title{
+        background: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        color: #000;
+    }
 }
 
 .gridBox2 {
