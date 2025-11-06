@@ -3,8 +3,6 @@
   <div>
     <!-- NuxtPage 现在会使用我们动态生成的 pageTransition 对象 -->
     <NuxtPage class="pageContainer" :transition="pageTransition" />
-
-    <!-- 这个组件不受页面过渡影响 -->
     <van-backTop></van-backTop>
   </div>
 </template>
