@@ -3,7 +3,8 @@ import Components from "unplugin-vue-components/vite";
 import { VantResolver } from "unplugin-vue-components/resolvers";
 
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  loading: false,
+  devtools: { enabled: false },
 
   // [保留] 你的全局 CSS
   css: ["@/assets/css/public.scss"],
@@ -37,6 +38,18 @@ export default defineNuxtConfig({
       }),
     ],
   },
-
+  app: {
+    pageTransition: {
+      name: "page",
+      mode: "out-in",
+    },
+    head: {
+      title: "My App",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+      ],
+    },
+  },
   routeRules: {},
 });

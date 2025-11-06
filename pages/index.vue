@@ -1,28 +1,11 @@
 <template>
     <section>
-        <h1>My App</h1> <!-- 这是一个在服务器和客户端都一样的静态标题 -->
+
         <ClientOnly>
             <!-- 动态组件 -->
             <component :is="currentThemeComponent"></component>
 
-            <van-button type="primary" @click="changeTheme">
-                Change Theme
-            </van-button>
         </ClientOnly>
-        <div>
-
-            <van-button @click="showToastHandle('Hello world')">
-                hello world
-            </van-button>
-
-            <NuxtLink to="/login/beforeLogin">
-                <van-button>
-                    goLogin
-                </van-button>
-            </NuxtLink>
-        </div>
-
-
     </section>
 </template>
 
@@ -49,3 +32,8 @@ const showToastHandle = (message) => {
     console.log('111',111);
 };
 </script>
+
+
+<style lang="scss" scoped>
+
+</style>

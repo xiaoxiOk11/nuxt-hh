@@ -14,15 +14,19 @@ declare module 'vue' {
   export interface GlobalComponents {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VanBadge: typeof import('vant/es')['Badge']
     VanButton: typeof import('vant/es')['Button']
     VanCard: typeof import('vant/es')['Card']
     VanCell: typeof import('vant/es')['Cell']
     VanCellGroup: typeof import('vant/es')['CellGroup']
     VanNavBar: typeof import('vant/es')['NavBar']
+    VanNoticeBar: typeof import('vant/es')['NoticeBar']
     VanStep: typeof import('vant/es')['Step']
     VanSteps: typeof import('vant/es')['Steps']
     VanSwipe: typeof import('vant/es')['Swipe']
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
+    VanTabbar: typeof import('vant/es')['Tabbar']
+    VanTabbarItem: typeof import('vant/es')['TabbarItem']
     VanTag: typeof import('vant/es')['Tag']
   }
 }
@@ -31,14 +35,18 @@ declare module 'vue' {
 declare global {
   const RouterLink: typeof import('vue-router')['RouterLink']
   const RouterView: typeof import('vue-router')['RouterView']
+  const VanBadge: typeof import('vant/es')['Badge']
   const VanButton: typeof import('vant/es')['Button']
   const VanCard: typeof import('vant/es')['Card']
   const VanCell: typeof import('vant/es')['Cell']
   const VanCellGroup: typeof import('vant/es')['CellGroup']
   const VanNavBar: typeof import('vant/es')['NavBar']
+  const VanNoticeBar: typeof import('vant/es')['NoticeBar']
   const VanStep: typeof import('vant/es')['Step']
   const VanSteps: typeof import('vant/es')['Steps']
   const VanSwipe: typeof import('vant/es')['Swipe']
   const VanSwipeItem: typeof import('vant/es')['SwipeItem']
+  const VanTabbar: typeof import('vant/es')['Tabbar']
+  const VanTabbarItem: typeof import('vant/es')['TabbarItem']
   const VanTag: typeof import('vant/es')['Tag']
 }
