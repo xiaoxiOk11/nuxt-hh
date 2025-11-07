@@ -39,6 +39,74 @@
             <div class="mt30 start-quantify-btn f18 toPointer">
                 <span class="text_bold">0/5</span> Start Quantify
             </div>
+
+            <div class="mt30">
+                <div class="pageBoxEl mb20 vipListItem" v-for="(item, index) in 3" :key="index">
+                    <div class="between">
+                        <div class="text_bold f20 colorSecond">VIP {{ item }}</div>
+                        <div class="lowBtn" v-if="item <2">Up Than This Level</div>
+                        <div class="mainTextColor" v-else-if="item == 2">Current Level</div>
+
+                        <div class="upBtn" v-else>Click To Unlock</div>
+                    </div>
+                    <div class="mt10 gridBox2">
+                        <div class="gridBox2ItemEl">
+                            <div class="label">
+                                Quantification Times Per Day
+                            </div>
+                            <div class="value">1</div>
+                        </div>
+                        <div class="gridBox2ItemEl">
+                            <div class="label">
+                                Profit Ratio
+                            </div>
+                            <div class="value">1</div>
+                        </div>
+                        <div class="gridBox2ItemEl">
+                            <div class="label">
+                                Minimum Unlock Amount
+                            </div>
+                            <div class="value">1</div>
+                        </div>
+                        <div class="gridBox2ItemEl">
+                            <div class="label">
+                                Quantifiable Number Of Days
+                            </div>
+                            <div class="value">1</div>
+                        </div>
+                    </div>
+                    <div class="mt20 text_bold text_center f20 colorSecond">
+                        VIP Preferred Strategy
+                    </div>
+                    <div class="mt20 infoBox " v-if="item == 2">
+                        <div class="between ">
+                            <div class="popBtn">Popular</div>
+                            <div class="colorSecond flex col_center">
+                                Check
+                                <img src="~/assets/images/01/icon/right_fill.png" class="ww-20 hh-20">
+                            </div>
+                        </div>
+                        <div class="mt20 gridBox4">
+                            <div class="grid4ItemEl flex col_center colorSecond">
+                                <img src="~/assets/images/01/icon/p1.png" class="ww-30 hh-30">
+                                <div class="ml5">Huobi</div>
+                            </div>
+                            <div class="grid4ItemEl flex col_center colorSecond">
+                                <img src="~/assets/images/01/icon/p2.png" class="ww-30 hh-30">
+                                <div class="ml5">Binance</div>
+                            </div>
+                            <div class="grid4ItemEl flex col_center colorSecond">
+                                <img src="~/assets/images/01/icon/p3.png" class="ww-30 hh-30">
+                                <div class="ml5">CoinBase</div>
+                            </div>
+                            <div class="grid4ItemEl flex col_center colorSecond">
+                                <img src="~/assets/images/01/icon/p4.png" class="ww-30 hh-30">
+                                <div class="ml5">OKX</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <Tabbar />
@@ -46,6 +114,8 @@
 </template>
 
 <script setup>
+import { Icon } from "@iconify/vue";
+
 import Header from '../publicComponents/Header.vue';
 import Tabbar from '../publicComponents/Tabbar.vue';
 import { countryApi } from '~/api/home/home'
@@ -97,6 +167,7 @@ const cardInfo = [
 .pageBoxEl{
     padding: 16px;
     background: #F6F3FC;
+    
     .gridBox2ItemEl{
         display: flex;
         justify-content: space-between;
@@ -107,6 +178,28 @@ const cardInfo = [
             color: #130040;
         }
     }
+    .lowBtn{
+        color: #ACACC7;
+    }
+    .upBtn{
+        background: #F9DEC9;
+        color: #000;
+        padding: 10px;
+        border-radius: 8px 11px;
+    }
+}
+.vipListItem{
+    background: #fff;
+    .infoBox {
+            background: #F5F3FC;
+            padding: 10px;
+            border-radius: 10px;
+            .popBtn{
+                background: var(--mainColor);
+                padding: 10px;
+                border-radius: 50px;
+            }
+        }
 }
 .start-quantify-btn {
     text-align: center;

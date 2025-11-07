@@ -1,6 +1,7 @@
 body{
   // --mainColor:#FFFFFF;
   --bodyBgColor:#130040;
+  --secondTextColor:var(--bodyBgColor);
   --mainColor:#623CBF;
   --btnColor:var(--mainColor);
   // background: var(--bodyBgColor);
@@ -17,6 +18,10 @@ body{
 }
 .mainTextColor{
   color: var(--mainColor);
+}
+.colorSecond{
+  color: var(--secondTextColor);
+
 }
 .colorUp{
   color: var(--colorUp);

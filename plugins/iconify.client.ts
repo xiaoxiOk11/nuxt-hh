@@ -1,7 +1,7 @@
-import { defineNuxtPlugin } from "#app";
+// import { defineNuxtPlugin } from "#app";
 
-import { Icon } from "@iconify/vue";
+// import { Icon } from "@iconify/vue";
 
-export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.component("IconFont", Icon);
-});
+// export default defineNuxtPlugin((nuxtApp) => {
+//   nuxtApp.vueApp.component("Icon", Icon);
+// });
