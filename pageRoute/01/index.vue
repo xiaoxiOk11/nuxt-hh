@@ -1,26 +1,6 @@
 <template>
     <div>
-        <ClientOnly>
-            <div class="topHeaderEl colorfff  between">
-                <div class="f18 text_bold flex col_center ">
-                    <img src="" alt="">
-                    环宇出海量化平台
-                </div>
-                <div class="flex col_center colorfff">
-                    <div class="center msgEl">
-                        <img src="~/assets/images/01/icon/msg.png" class="ww-35 hh-35">
-
-                    </div>
-                    <div class="flex col_center ml15 langSelectorEl">
-                        <img src="~/assets/images/01/icon/lang.png" class="ww-20 hh-20">
-
-                        <span class="ml10">English</span>
-                        <img src="~/assets/images/01/icon/down.png" class="ww-20 hh-20">
-
-                    </div>
-                </div>
-            </div>
-        </ClientOnly>
+     <Header/>
         <div class="pageComContainer">
             <div class="noticeEl">
                 <van-notice-bar background="transparent" color="#fff" :left-icon="noticeIcon"
@@ -58,9 +38,50 @@
                 </div>
             </div>
 
-            <div class="mt20 infoTitle">
-                <div class="title">
+            <div class="mt20 infoTitle pageBoxEl">
+                <div class="title boxContentEl">
                     ajskdjkasjdklqwjeklq
+                </div>
+            </div>
+
+            <div class="pageBoxEl mt20">
+                <div class="c_title text_bold">
+                    Real-Time Quotes
+                </div>
+                <div class="mt20 gridBox4">
+                    <div class="coinTypeEl toPointer" :class="[{ 'actContypeEl': index == actCoinType }]"
+                        v-for="(item, index) in coinFromList" :key="index" @click="changeCoinFrom(item, index)">
+                        {{ item.name }}
+                    </div>
+                </div>
+
+                <div class="mt20 boxContentEl coinContentEl">
+                    <div class="gridBox3 ">
+                        <div>
+                            Currency
+                        </div>
+                        <div>
+                            last Price($)
+                        </div>
+                        <div>
+                            24h Rise & Down
+                        </div>
+                    </div>
+                    <div class="gridBox3 toPointer mt10 mb20 coinItemEl" v-for="item in 5" :key="item">
+                        <div>
+                            <span class="text_bold f14 coinName">BTC</span>
+                            <span class="label f12">/USDT</span>
+                        </div>
+
+                        <div class="f16 text_bold" :class="item%2 == 1?'colorDown':'colorUp'">
+                            44444.44
+                        </div>
+
+                        <div  class="f14" :class="item % 2 == 1 ? 'colorDown' : 'colorUp'">
+                            +98%
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -69,6 +90,7 @@
 </template>
 
 <script setup>
+import Header from './publicComponents/Header.vue';
 import Tabbar from './publicComponents/Tabbar.vue';
 import noticeIcon from '~/assets/images/01/icon/notice.png';
 
@@ -101,11 +123,54 @@ const parnterList = computed(() => {
         },
     ]
 })
+
+const actCoinType = ref(0)
+const coinFromList = computed(() => {
+    return [
+        {
+            name: 'Binance',
+            value: 0
+        },
+        {
+            name: 'Okx',
+            value: 1
+        },
+        {
+            name: 'Huobi',
+            value: 2
+        },
+        {
+            name: 'CoinBase',
+            value: 3
+        },
+    ]
+})
 // 
+const changeCoinFrom = (item, ind) => {
+    actCoinType.value = ind
+}
+
+// console.log('',import.meta.env);
 </script>
 
 
 <style lang="scss" scoped>
+.coinContentEl {
+    padding: 10px;
+    border-radius: 10px;
+
+    .gridBox3 {
+        text-align: center;
+        color: #130040;
+
+    }
+    .coinItemEl{
+        .label{
+            color: #818088;
+        }
+    }
+}
+
 .downImg {
     height: 65px;
 
@@ -113,20 +178,31 @@ const parnterList = computed(() => {
     background-size: contain;
     background-position: center;
 }
-.infoTitle{
-    background: #F6F3FC;
-    border-radius: 15px;
-    padding: 10px;
-    .title{
-        background: #fff;
+
+.coinTypeEl {
+    color: #130040;
+    text-transform: uppercase;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.actContypeEl {
+    background: var(--btnColor);
+    color: #fff;
+    border-radius: 10px;
+}
+
+.infoTitle {
+
+    .title {
         padding: 10px;
         border-radius: 10px;
-        color: #000;
     }
 }
 
 .gridBox2 {
-    gap: 10px;
     .grid2ItemEl {
         height: 110px;
         padding-bottom: 10px;
@@ -145,32 +221,32 @@ const parnterList = computed(() => {
         &:nth-child(2) {
             background-image: url('~/assets/images/01/index/i_p2.png');
             background-repeat: no-repeat;
-                background-size: contain;
-                background-position: center;
+            background-size: contain;
+            background-position: center;
         }
     }
 
- 
-    .blurBg{
-        height:50px;
+
+    .blurBg {
+        height: 50px;
         width: 100%;
         line-height: 50px;
         background-size: contain;
     }
-  
-}
-  .blurBg {
-      margin: 0 5px;
-      background: url('~/assets/images/01/index/blurBg.png') no-repeat;
-      background-size: contain;
-      width: 100%;
-      height: 40px;
-      line-height: 40px;
-      background-position: center;
-  }
-.gridBox3 {
-    gap: 10px;
 
+}
+
+.blurBg {
+    margin: 0 5px;
+    background: url('~/assets/images/01/index/blurBg.png') no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-position: center;
+}
+
+.gridBox3 {
     .grid3ItemEl {
         height: 125px;
         padding-bottom: 10px;
@@ -195,7 +271,7 @@ const parnterList = computed(() => {
         background-size: contain;
         background-position: center;
 
-     
+
     }
 }
 
@@ -224,14 +300,5 @@ const parnterList = computed(() => {
     width: 100%;
 }
 
-.topHeaderEl {
-    height: 40px;
-    padding: 10px 16px;
 
-    .langSelectorEl {
-        border: 1px solid #fff;
-        padding: 5px 10px;
-        border-radius: 50px;
-    }
-}
 </style>

@@ -3,8 +3,8 @@
     margin: 0;
 }
 body{
-    --pageWidth:400px;
-
+    --pageWidth:450px;
+  overflow-x: hidden;
 }
 .pageContainer{
     max-width: var(--pageWidth);
@@ -12,7 +12,9 @@ body{
     margin: 0 auto;
     min-height: 100vh;
 }
-
+.toPointer{
+  cursor: pointer;
+}
 
 ul,
 ol li {
@@ -108,17 +110,25 @@ input {
 .gridBox2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+
 }
 .gridBox3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+
 }
 .gridBox4 {
   display: grid;
+        gap: 10px;
+
   grid-template-columns: repeat(4, 1fr);
 }
 .gridBox5 {
   display: grid;
+        gap: 10px;
+
   grid-template-columns: repeat(5, 1fr);
 }
 .textHiddenOne {

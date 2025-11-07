@@ -7,15 +7,19 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "translate": "translate"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.11.2",
+    "axios": "^1.13.2",
     "dayjs": "^1.11.19",
     "gsap": "^3.13.0",
     "klinecharts": "^10.0.0-alpha5",
+    "language-translate": "^2.2.5",
     "nuxt": "^4.2.0",
     "pinia": "^3.0.3",
+    "socket.io-client": "^4.8.1",
     "vant": "^4.9.21",
     "vue": "^3.5.22",
     "vue-router": "^4.6.3"

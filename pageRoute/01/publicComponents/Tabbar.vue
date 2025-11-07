@@ -77,48 +77,50 @@ router.afterEach(() => {
 </script>
 
 <template>
-    <van-tabbar v-model="active" @change="onChange" class="tabbar">
-        <van-tabbar-item :name="0" :index="0">
-            <template #icon="props">
-                <img :src="props.active ? tabs[0].selectIcon : tabs[0].icon" class="tabbar-icon" />
-                <div class="f12">{{ tabs[0].name }}</div>
-            </template>
-        </van-tabbar-item>
-        <van-tabbar-item :index="1" :name="1" :dot="false">
-            <template #icon="props">
-                <van-badge :content="tabs[1].badge" :show-zero="false">
-                    <img :src="props.active ? tabs[1].selectIcon : tabs[1].icon" class="tabbar-icon" />
-                    <div class="f12">{{ tabs[1].name }}</div>
+    <div>
+        <van-tabbar v-model="active" @change="onChange" class="tabbar" :safe-area-inset-bottom="true">
+            <van-tabbar-item :name="0" :index="0">
+                <template #icon="props">
+                    <img :src="props.active ? tabs[0].selectIcon : tabs[0].icon" class="tabbar-icon" />
+                    <div class="f12">{{ tabs[0].name }}</div>
+                </template>
+            </van-tabbar-item>
+            <van-tabbar-item :index="1" :name="1" :dot="false">
+                <template #icon="props">
+                    <van-badge :content="tabs[1].badge" :show-zero="false">
+                        <img :src="props.active ? tabs[1].selectIcon : tabs[1].icon" class="tabbar-icon" />
+                        <div class="f12">{{ tabs[1].name }}</div>
 
-                </van-badge>
-            </template>
-        </van-tabbar-item>
-        <van-tabbar-item :index="2" :name="2">
-            <template #icon="props">
-                <img :src="props.active ? tabs[2].selectIcon : tabs[2].icon" class="tabbar-icon" />
-                <div class="f12">{{ tabs[2].name }}</div>
-            </template>
-        </van-tabbar-item>
-        <van-tabbar-item :index="3" :name="3">
-            <template #icon="props">
-                <img :src="props.active ? tabs[3].selectIcon : tabs[3].icon" class="tabbar-icon" />
-                <div class="f12">{{ tabs[3].name }}</div>
-            </template>
-        </van-tabbar-item>
-        <van-tabbar-item :index="4" :name="4">
-            <template #icon="props">
-                <img :src="props.active ? tabs[4].selectIcon : tabs[4].icon" class="tabbar-icon" />
-                <div class="f12">{{ tabs[4].name }}</div>
-            </template>
-        </van-tabbar-item>
-    </van-tabbar>
+                    </van-badge>
+                </template>
+            </van-tabbar-item>
+            <van-tabbar-item :index="2" :name="2">
+                <template #icon="props">
+                    <img :src="props.active ? tabs[2].selectIcon : tabs[2].icon" class="tabbar-icon" />
+                    <div class="f12">{{ tabs[2].name }}</div>
+                </template>
+            </van-tabbar-item>
+            <van-tabbar-item :index="3" :name="3">
+                <template #icon="props">
+                    <img :src="props.active ? tabs[3].selectIcon : tabs[3].icon" class="tabbar-icon" />
+                    <div class="f12">{{ tabs[3].name }}</div>
+                </template>
+            </van-tabbar-item>
+            <van-tabbar-item :index="4" :name="4">
+                <template #icon="props">
+                    <img :src="props.active ? tabs[4].selectIcon : tabs[4].icon" class="tabbar-icon" />
+                    <div class="f12">{{ tabs[4].name }}</div>
+                </template>
+            </van-tabbar-item>
+        </van-tabbar>
+        <div style="height: 60px;"></div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
 .tabbar {
-    position: fixed !important;
-    bottom: 0;
-    left: 0;
+    // position: absolute !important;
+    bottom: 0 !important;
     max-width: var(--maxWidth);
     left: 50%;
     z-index: 990 !important;

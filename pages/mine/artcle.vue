@@ -1,7 +1,6 @@
 <!-- pages/index.vue -->
 <template>
     <section>
-        <h1>My App</h1> <!-- 这是一个在服务器和客户端都一样的静态标题 -->
         <ClientOnly>
             <!-- 动态组件 -->
             <component :is="currentThemeComponent"></component>

@@ -1,0 +1,261 @@
+import request from "@/api/request.ts";
+/**
+ * @returns 手机号注册
+ */ 
+export function joinRegister(data) {
+  return request({
+    url: "/join/register",
+    method: "POST",
+    data,
+  });
+}
+/**
+ * @returns 邮箱注册
+ */ 
+export function emailRegister(data) {
+  return request({
+    url: "/join/email/register",
+    method: "POST",
+    data,
+  });
+}
+/**
+ * @returns 手机发送验证码
+ */ 
+export function sendPhoneCode(data) {
+  return request({
+    url: "/join/sms",
+    method: "POST",
+    data:data,
+  });
+}
+/**
+ * @returns 邮箱发送验证码
+ */ 
+export function sendEmailCode(data) {
+  return request({
+    url: "/join/email/sms",
+    method: "POST",
+    data,
+  });
+}
+/**
+ * @returns 获取注册信息
+ */ 
+export function registerSetting() {
+  return request({
+    url: "/setting/register",
+  });
+}
+/**
+ * @returns 登陆
+ */ 
+export function joinLogin(data) {
+  return request({
+    url: "/join/login",
+    method: "POST",
+    data,
+  });
+}
+/**
+ * @returns 邮箱登陆
+ */ 
+export function emailLogin(data) {
+  return request({
+    url: "/join/email/login",
+    method: "POST",
+    data,
+  });
+}
+/**
+ * @returns 获取区号
+ */ 
+export function countryApi() {
+  return request({
+    url: "/setting/country",
+  });
+}
+/**
+ * @returns 获取首页轮播图
+ */ 
+export function getHomeBanner() {
+  return request({
+    url: "/home/banner",
+  });
+}
+/**
+ * @returns 获取网站app内容
+ */ 
+export function getWebSite() {
+  return request({
+    url: "/setting/website",
+  });
+}
+/**
+ * @returns 用户信息
+ */ 
+export function getUserInfo() {
+  return request({
+    url: "/user/index",
+    cancelable: false, // 不可取消
+  });
+}
+/** 
+ * @returns 语言列表   
+ */
+export function langListApi() {
+  return request({
+    url: "/setting/lang",
+  });
+}
+/**
+ * @returns 获取上传配置 
+ */ 
+export function getUploadHostService() {
+  return request({
+    url: "/setting/upload",
+  });
+}
+
+
+/**
+ * @returns 获取平台货币符号  /setting/userAgreement
+ */ 
+export function getPlantCurrency() {
+  return request({
+    url: "/setting/currency",
+  });
+}
+
+/**
+ * @returns 获取用户协议
+ */ 
+export function getUserAgent() {
+  return request({
+    url: "/setting/userAgreement",
+  });
+}
+
+
+/**
+ * @returns 获取用户帐变记录  
+ */ 
+export function getUserBalanceRecordApi(data) {
+  return request({
+    url: "/user/record/balance",
+    params:data
+  });
+}
+
+/**
+ * @returns 获取平台信息  
+ */ 
+export function getPlantDataApi(data) {
+  return request({
+    url: "/home/other",
+    params: data,
+  });
+}
+
+// 
+/**
+ * @returns 获取平台客服  
+*/ 
+export function getCustomerServiceApi(data) {
+ return request({
+   url: "/setting/customerService",
+   params: data,
+ });
+}
+
+/**
+ * @returns 通知
+ */
+export function noticeList(data) {
+  return request({
+    url: "/user/record/message",
+    params: data,
+  });
+}
+
+/** user/record/team/report
+ * @returns 阅读通知
+ */
+export function readNotice(data) {
+  return request({
+    url: "/user/read",
+    method: "POST",
+    data
+  });
+}
+
+/** 
+ * @returns 团队报告
+ */
+export function teamReportApi() {
+  return request({
+    url: "/user/record/team/report",
+  });
+}
+
+/**  setting/tradeConfig
+ * @returns 团队报告
+ */
+export function teamUserReportApi(params) {
+  return request({
+    url: "/user/record/team/user",
+    params,
+  });
+}
+
+/**   join/imgVerifyConfig
+ * @returns 货币数据类型 
+ * @Res 1 外汇
+ * @Res 2 加密货币
+ * @Res 3 期货
+ * @Res 4 股票
+ */
+export function marketTypeApi(params) {
+  return request({
+    url: "/setting/tradeConfig",
+    params,
+  });
+}
+
+/**    user/currencyList
+ * @returns 货币数据类型 
+ */
+export function imgVerifyConfigApi(params) {
+  return request({
+    url: "/join/imgVerifyConfig",
+    params,
+  });
+}
+
+/**     home/UserAndPolicy
+ * @returns 获取现货持有列表 
+ */
+export function getUserCurrencyListApi() {
+  return request({
+    url: "/user/currencyList",
+  });
+}
+
+/**      page/article/detail
+ * @returns 用户协议 
+ */
+export function userAndPolicyApi() {
+  return request({
+    url: "/home/UserAndPolicy",
+  });
+}
+
+/**      
+ * @returns 用户协议 
+ */
+export function userArticleDetailApi(params) {
+  return request({
+    url: "/page/article/detail",
+    params,
+  });
+}

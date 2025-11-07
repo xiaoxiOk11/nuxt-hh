@@ -1,12 +1,42 @@
 body{
   // --mainColor:#FFFFFF;
   --bodyBgColor:#130040;
-
-  background: var(--bodyBgColor);
+  --mainColor:#623CBF;
+  --btnColor:var(--mainColor);
+  // background: var(--bodyBgColor);
 
   color: #fff;
+  --secondBoxBg:#F6F3FC;
+  --thirdBoxBg:#fff;
+  --colorUp:#1EE186;
+  --colorDown:#FF6565;
+  
+  .pageContainer{
+    background: var(--bodyBgColor);
+  }
 }
-
+.mainTextColor{
+  color: var(--mainColor);
+}
+.colorUp{
+  color: var(--colorUp);
+}
+.colorDown{
+  color: var(--colorDown);
+}
+.pageBoxEl{
+  background: var(--secondBoxBg);
+  .boxContentEl{
+    background: var(--thirdBoxBg);
+    color: #000;
+  }
+    border-radius: 15px;
+    padding: 10px;
+  .c_title{
+    color:#130040 ;
+    font-size: 18px;
+  }
+}
 .pageComContainer{
   padding: 12px 16px;
 }

@@ -18,9 +18,7 @@ const useThemeRoute = themeRoute()
 watch(
   () => useThemeRoute.fileRoute,
   (newRoute) => {
-    // 提示：动态 import CSS 可能会有副作用和加载顺序问题。
     // 在 nuxt.config.ts 中通过 body aatributes 或 useHead 动态添加 class/style 可能是更稳健的方式。
-    // 但我们暂时保留你的原始逻辑。
     console.log('Theme route changed to:', newRoute)
     if (newRoute) {
       import(`~/assets/css/${newRoute}/main.scss`)
@@ -29,7 +27,6 @@ watch(
   { immediate: true }
 )
 
-// --- 2. 定义你的动画库 (可以随意增删改) ---
 const animations = [
   {
     name: 'slide-up',
@@ -58,7 +55,7 @@ const animations = [
   }
 ]
 
-let lastAnimationIndex = -1 // 用于避免连续两次动画相同
+let lastAnimationIndex = -1 
 const getRandomAnimation = () => {
   let randomIndex
   do {
@@ -69,10 +66,8 @@ const getRandomAnimation = () => {
   return animations[randomIndex]
 }
 
-// --- 3. 创建响应式状态来存储当前要使用的动画 ---
 const currentAnimation = ref(getRandomAnimation())
 
-// --- 4. 在每次路由切换前，选择一个新的随机动画 ---
 const router = useRouter()
 router.beforeEach((to, from, next) => {
   // 仅在实际发生页面切换时才更新动画（跳过初始加载）
@@ -82,31 +77,29 @@ router.beforeEach((to, from, next) => {
   next() // 必须调用 next() 以继续导航
 })
 
-// --- 5. 定义最终的、动态的 pageTransition 对象 ---
 // 这个对象将从 currentAnimation 中读取动画参数
 const pageTransition = reactive({
-  name: 'dynamic-gsap', // 给一个基础名字
+  name: 'dynamic-gsap', 
   mode: 'out-in',
 
-  onEnter(el, done) {
-    // 使用当前选定动画的 enter 参数
-    gsap.from(el, {
-      duration: 0.5,
-      ease: 'power2.inOut',
-      ...currentAnimation.value.enter,
-      onComplete: done
-    })
-  },
+  // onEnter(el, done) {
+  //   // 使用当前选定动画的 enter 参数
+  //   gsap.from(el, {
+  //     duration: 0.5,
+  //     ease: 'power2.inOut',
+  //     ...currentAnimation.value.enter,
+  //     onComplete: done
+  //   })
+  // },
 
-  onLeave(el, done) {
-    // 使用当前选定动画的 leave 参数
-    gsap.to(el, {
-      duration: 0.5,
-      ease: 'power2.inOut',
-      ...currentAnimation.value.leave,
-      onComplete: done
-    })
-  }
+  // onLeave(el, done) {
+  //   gsap.to(el, {
+  //     duration: 0.5,
+  //     ease: 'power2.inOut',
+  //     ...currentAnimation.value.leave,
+  //     onComplete: done
+  //   })
+  // }
 })
 </script>
 
