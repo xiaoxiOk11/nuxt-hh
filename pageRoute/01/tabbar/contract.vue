@@ -1,7 +1,7 @@
 <script setup>
-import TopNav from '../publicComponents/TopNav.vue';
+import TopNav from '../publicComponents/TopNavBar.vue';
 import KLine from './components/KLine.vue';
-import leftCoinPop from '../publicComponents/leftCoinPop.vue';
+import leftCoinPop from '../publicComponents/LeftCoinList.vue';
 
 const recordType = ref(0)
 const recordTypeList = ref([

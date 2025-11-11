@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+
 function safeDestructure(obj) {
   // 确保obj是对象
   if (obj === null || typeof obj !== "object") {
