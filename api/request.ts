@@ -1,5 +1,5 @@
-import axios from 'axios';
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from "axios";
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { publicStore } from "~/stores/publicData";
 
 interface HttpResponse<T> {
@@ -82,9 +82,12 @@ const axiosInstance: AxiosInstance = axios.create({
 // 请求拦截器
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    const lang = localStorage.getItem("lang") || "en";
-    const token = localStorage.getItem("authorization");
-
+    let lang = "en";
+    let token = "";
+    if (typeof window !== "undefined") {
+      lang = localStorage.getItem("lang") || "en";
+      token = localStorage.getItem("authorization") || "";
+    }
     config.headers = {
       ...config.headers,
       lang: lang,
@@ -111,9 +114,11 @@ axiosInstance.interceptors.response.use(
     const { code, message } = data;
 
     if (code !== 401 && code !== 1002) {
-      let curVersion = localStorage.getItem("APP_VERSION");
-      if (data.version !== curVersion) {
-        localStorage.setItem("APP_VERSION", data.version);
+      if (typeof window !== "undefined") {
+        let curVersion = localStorage.getItem("APP_VERSION");
+        if (data.version !== curVersion) {
+          localStorage.setItem("APP_VERSION", data.version);
+        }
         // window.location.reload();
       }
     }

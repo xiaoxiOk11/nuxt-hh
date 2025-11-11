@@ -3,7 +3,6 @@ import Components from "unplugin-vue-components/vite";
 import { VantResolver } from "unplugin-vue-components/resolvers";
 
 export default defineNuxtConfig({
-  loading: false,
   devtools: { enabled: false },
 
   // [保留] 你的全局 CSS
@@ -11,6 +10,7 @@ export default defineNuxtConfig({
 
   // [合并] 在 modules 数组中添加新的模块
   modules: [
+    "@nuxt/ui",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt", // 新增: Pinia 持久化
     "@nuxtjs/i18n", // 新增: i18n
