@@ -11,7 +11,9 @@ body{
   --thirdBoxBg:#fff;
   --colorUp:#1EE186;
   --colorDown:#FF6565;
-  
+  --colorUp2:#3DB89A;
+  --colorDown2:#CE4040;
+
   .pageContainer{
     background: var(--bodyBgColor);
   }
@@ -29,6 +31,12 @@ body{
 .colorDown{
   color: var(--colorDown);
 }
+.colorUp2{
+  color: var(--colorUp2);
+}
+.colorDown2{
+  color: var(--colorDown2);
+}
 .pageBoxEl{
   background: var(--secondBoxBg);
   .boxContentEl{
@@ -45,3 +53,59 @@ body{
 .pageComContainer{
   padding: 12px 16px;
 }
+.nullData{
+  background: url('~/assets/images/01/img/nullData.png') no-repeat;
+  background-size: 100px 100px;
+  height: 100px;
+  background-position: center;
+}
+.fixedBotBtn{
+  background: #0D081A;
+  // height: 50px;
+  padding: 15px 0  20px 0;
+  .gridBox2{
+   place-items: center;
+
+  }
+  div{
+    width: 90%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .buyBtn{
+    background:#3DB89A ;
+    color: #fff;
+  }
+   .sellBtn{
+    background:#CE4040 ;
+    color: #fff;
+  }
+}
+.recordPage {
+  .recordItemEl{
+     .between div:nth-child(1) {
+      color: #666;
+    }
+  }
+    .recordItem {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #130040;
+  }
+  .colorUp{
+    color: var(--colorUp2);
+  }
+   .colorDown{
+    color: var(--colorDown2);
+  }
+}
+  .van-skeleton {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+  }

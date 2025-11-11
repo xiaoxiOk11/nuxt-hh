@@ -114,8 +114,6 @@
 </template>
 
 <script setup>
-import { Icon } from "@iconify/vue";
-
 import Header from '../publicComponents/Header.vue';
 import Tabbar from '../publicComponents/Tabbar.vue';
 import { countryApi } from '~/api/home/home'

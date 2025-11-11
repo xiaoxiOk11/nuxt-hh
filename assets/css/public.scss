@@ -224,3 +224,15 @@ input {
   }
  
 }
+.color999{
+  color: #999;
+}
+.colorfff{
+  color: #fff;
+}
+.fixedBotBtn{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: var(--pageWidth);
+}

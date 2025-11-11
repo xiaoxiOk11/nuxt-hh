@@ -12,6 +12,7 @@ const recordList = ref([])
 const loading = ref(true)
 const finished = ref(false)
 const totalSize = ref(0)
+
 const getRecordList = () => {
     // rechargeRecordList(pages.value).then(res => {
     //     totalSize.value = res.total

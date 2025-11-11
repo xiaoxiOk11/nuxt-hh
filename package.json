@@ -11,6 +11,7 @@
     "translate": "translate"
   },
   "dependencies": {
+    "@nuxt/ui": "^4.1.0",
     "@pinia/nuxt": "^0.11.2",
     "axios": "^1.13.2",
     "dayjs": "^1.11.19",

@@ -24,7 +24,7 @@ const props = defineProps({
     },
     color: {
         type: String,
-        default: "#000"
+        default: "#fff"
     },
     showLangIcon: {
         type: Boolean,
@@ -56,23 +56,19 @@ const goBack = () => {
 
 <template>
     <van-sticky position="top" offset-top="0" @change="change">
-        <div class="pageTopNavEl between"
-            :style="{ background: '#fff' }">
-            <div class="flex toPointer col_center">
+        <div class="pageTopNavEl between" :style="{ background: '#312D3D' }">
+            <div class="flex toPointer col_center leftEl" >
                 <div @click="goBack" class="toPointer center">
-                    <Icon icon="icon-park-outline:left" :color="color" width="34">
-                    </Icon>
+                    <UIcon name="ic:baseline-keyboard-arrow-left" class="hh-30 ww-30" />
+
                 </div>
             </div>
-            <div class=" centerTitle f14 text_bold"
-                :style="{ color: color }">{{
-                    pageTitle }}</div>
-            <div class="center toPointer" :style="{ color: color }"
-                @click="rightIconClick" style="width: 40px;">
+            <div class=" centerTitle f18 text_bold" :style="{ color: color }">{{
+                pageTitle }}</div>
+            <div class="center toPointer rightEl" :style="{ color: color }" @click="rightIconClick">
                 <slot>
                 </slot>
-                <Icon icon="ic:baseline-language" width="35" height="35" :color="color"
-                    v-if="showLangIcon" />
+<!-- 123 -->
             </div>
         </div>
     </van-sticky>
@@ -93,6 +89,10 @@ box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
         text-align: center;
         // transform: translateX(-50%);
         // z-index: -1;
+    }
+    .leftEl, .rightEl{
+        width: 60px;
+        height: 100%;
     }
 }
 </style>
