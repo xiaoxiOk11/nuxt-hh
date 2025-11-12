@@ -1,12 +1,16 @@
 <script setup>
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 import { useRouter } from 'vue-router'
 const router = useRouter();
 import { LoginStore } from '@/stores/login'
 const useLoginStore = LoginStore()
+import { joinRegister, emailRegister, sendPhoneCode, sendEmailCode } from '@/api/home/home';
 
 import circleCheck from '~/assets/images/01/login/circle.png';
 import circleChecked from '~/assets/images/01/login/circle_c.png';
 import SelectAreacode from '../publicComponents/SelectAreacode.vue';
+import { showToast } from "vant";
 const changePage = (url) => {
     if (url) {
         router.push(url)
@@ -15,8 +19,8 @@ const changePage = (url) => {
     }
     router.back()
 }
-
-const showInviteCodeFlag = computed(() => useLoginStore.registerInviteCode)
+const HOST_URL = import.meta.env.VITE_API_BASE
+const showInviteCodeFlag = ref(true)
 const areaCode = computed(() => useLoginStore.areaCode)
 const internationalEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u
 
@@ -61,9 +65,9 @@ const loginTypeList = loginType.value.map(item => {
         value: item,
     }
     if (item == 'phone') {
-        obj.name = 'Phone Login'
+        obj.name = 'Phone Register'
     } else if (item == 'email') {
-        obj.name = 'Email Login'
+        obj.name = 'Email Register'
     }
     return obj
 })
@@ -76,27 +80,35 @@ const changeLoginType = item => {
 
 const showPwd = ref(false)
 const showPwd2 = ref(false)
-const showPwd3 = ref(false)
-const showPwd4 = ref(false)
 const loginForm = ref({
     username: "",
     password: "",
-    password2: "",
     secPwd: "",
-    secPwd2: "",
 
 })
 const agreeChecked = ref(false)
 const onSubmit = () => {
-    console.log('123', 123);
+
+    const data = {
+        uuid: uuid.value,
+        // sms_code: smsCode.value,
+        country_code: areaCode.value.code,
+        // invite_code: inviteCode.value,
+        password: loginForm.value.password,
+        password2: loginForm.value.secPwd,
+        phone: loginForm.value.username,
+    }
+    joinRegister(data).then(res => {
+        localStorage.setItem('authorization', res.accessToken)
+        router.push('/')
+    })
 }
 
 const sendCodeFlag = ref(false)
 const sendHandle = () => {
     if (sendCodeFlag.value) return
-    if (!inpVal1.value) {
-
-        return showToast(loginTypeActInd < 2 ? t('login.a5') : t('login.a6'))
+    if (!loginForm.value.username) {
+        return showToast(loginTypeVal.value == 'phone' ? t('login.a5') : t('login.a6'))
     }
     let data = {}
     if (showImgVerfy.value > 0 && !captcha.value) {
@@ -107,13 +119,10 @@ const sendHandle = () => {
             uuid: uuid.value
         }
     }
-
     // tel  sendPhoneCode, sendEmailCode 
     if (loginTypeVal.value < 2) {
-
         data.tel = inpVal1.value
         data.country = areaCode.value.code
-
         // 手机号注册
         // 手机注册
         sendPhoneCode(data).then(res => {
@@ -139,9 +148,20 @@ const sendHandle = () => {
 const resetSeconds = ref(60)
 const smsCode = ref("") //验证码
 const inviteCode = ref("")//邀请码
+const showImgVerfy = computed(() => useLoginStore.showCaptcha)
+const captcha = ref("")
+// uuid
+const uuid = ref(Math.floor(Math.random() * 1000) + 1)//图像验证码
+const changUUid = () => {
+    uuid.value = Math.floor(Math.random() * 1000) + 1
+}
+
 onMounted(() => {
     useLoginStore.initLoginData()
+    // imgVerifyConfig()
 })
+
+
 </script>
 
 <template>
@@ -202,7 +222,8 @@ onMounted(() => {
                                     <!--  -->
                                 </van-field>
                             </div>
-                            <div class="mt20">
+                            <!-- not do -->
+                            <div class="mt20" v-if="false">
                                 <div class="form-label f18 text_bold">
                                     SMS Code
                                 </div>
@@ -210,7 +231,7 @@ onMounted(() => {
                                     @input="inputHandle">
                                     <template #right-icon>
                                         <div class="center f14 text_bold">
-                                            <div class="sendCodeBtn bbo8" @click="sendHandle"
+                                            <div class="sendCodeBtn bbo8 toPointer" @click="sendHandle"
                                                 :class="sendCodeFlag ? 'disabled' : ''">
                                                 {{ sendCodeFlag ? resetSeconds + 's' : 'OTP' }}
                                             </div>
@@ -234,12 +255,13 @@ onMounted(() => {
                                 </van-field>
                             </div>
 
+
                             <div class="mt20">
                                 <div class="form-label f18 text_bold">
-                                    Confirm Password
+                                    Security Password
                                 </div>
-                                <van-field v-model="loginForm.password2" :type="showPwd2 ? 'text' : 'password'"
-                                    name="password" placeholder="Confirm Password">
+                                <van-field v-model="loginForm.secPwd" :type="showPwd2 ? 'text' : 'password'"
+                                    name="password" placeholder="Security Password">
                                     <template #right-icon>
                                         <div class="center">
                                             <UIcon :name="showPwd2 ? 'ic:sharp-remove-red-eye' : 'tabler:eye-closed'"
@@ -248,45 +270,28 @@ onMounted(() => {
                                     </template>
                                 </van-field>
                             </div>
-                            <div class="mt20">
-                                <div class="form-label f18 text_bold">
-                                    Security Password
-                                </div>
-                                <van-field v-model="loginForm.password" :type="showPwd3 ? 'text' : 'password'"
-                                    name="password" placeholder="Security Password">
-                                    <template #right-icon>
-                                        <div class="center">
-                                            <UIcon :name="showPwd3 ? 'ic:sharp-remove-red-eye' : 'tabler:eye-closed'"
-                                                class="ww-25 hh-25" @click="showPwd3 = !showPwd3"></UIcon>
-                                        </div>
-                                    </template>
-                                </van-field>
-                            </div>
-                            <div class="mt20">
-                                <div class="form-label f18 text_bold">
-                                    Confirm Security Password
-                                </div>
-                                <van-field v-model="loginForm.secPwd2" :type="showPwd4 ? 'text' : 'password'"
-                                    name="password" placeholder="Confirm Security Password">
-                                    <template #right-icon>
-                                        <div class="center">
-                                            <UIcon :name="showPwd4 ? 'ic:sharp-remove-red-eye' : 'tabler:eye-closed'"
-                                                class="ww-25 hh-25" @click="showPwd4 = !showPwd4"></UIcon>
-                                        </div>
-                                    </template>
-                                </van-field>
-                            </div>
+
                             <!--  -->
                             <div class="mt20" v-if="showInviteCodeFlag">
                                 <div class="form-label f18 text_bold">
                                     Invition Code
                                 </div>
-                                <van-field v-model="inviteCode" 
-                                    name="password" placeholder="Invition Code">
-                                 
+                                <van-field v-model="inviteCode" name="password" placeholder="Invition Code">
+
                                 </van-field>
                             </div>
+                            <div class="mt20 " v-if="showImgVerfy > 0">
+                                <div class="form-label f18 text_bold">Captcha Code</div>
 
+                                <div class=" van-cell between mt10">
+                                    <div class=" flex1 ">
+                                        <input type="text" v-model="captcha" placeholder="Captcha Code">
+                                    </div>
+                                    <div class="rightFloatEl center toPointer" @click="changUUid">
+                                        <img :src="HOST_URL + '/join/imgVerify?uuid=' + uuid" style="height:40px" />
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mt20 flex  ">
                                 <img :src="agreeChecked ? circleCheck : circleChecked" class="ww-20 hh-20"
                                     @click="agreeChecked = !agreeChecked" />
@@ -294,11 +299,9 @@ onMounted(() => {
                                     <div> <span>Agree with our</span> <span class="mainTextColor mglr5">Term Of
                                             Use</span>
                                         and
-                                    </div>
-                                    <div class="mt5">
                                         <span class="mainTextColor">Privacy Policy</span>
-
                                     </div>
+
                                 </div>
                             </div>
                             <div class="actionBtn mt20  contentBtn" native-type="submit" @click="onSubmit">
@@ -316,4 +319,3 @@ onMounted(() => {
         <SelectAreacode ref="selectAreaCodeRef" :selectCodeHandle="selectCodeHandle" />
     </div>
 </template>
-

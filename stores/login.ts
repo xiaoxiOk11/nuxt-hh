@@ -1,11 +1,16 @@
 import { defineStore } from "pinia";
-import { countryApi, registerSetting } from "~/api/home/home";
+import {
+  countryApi,
+  registerSetting,
+  getRegisterConfig,
+} from "~/api/home/home";
 interface stateFace {
   areaCode: object;
   countryList: Array<Object>;
   registerChanel: Array<Number>;
   registerInviteCode: boolean;
   loginType: Array<Object>;
+  showCaptcha:Boolean
 }
 export const LoginStore = defineStore("loginStore", {
   state: (): stateFace => ({
@@ -14,6 +19,7 @@ export const LoginStore = defineStore("loginStore", {
     registerChanel: [], //登录注册 类型
     registerInviteCode: false, //是否需要邀请码
     loginType: [], //展示在页面的类型
+    showCaptcha:false
   }),
   actions: {
     selectAreaCode(code: codeFace) {
@@ -46,6 +52,9 @@ export const LoginStore = defineStore("loginStore", {
         if (channel.includes(2)) {
           this.loginType.push('email');
         }
+      });
+      getRegisterConfig().then((res:any) => {
+        this.showCaptcha = res.register_is_captcha == 1 ? true : false;
       });
     },
   },

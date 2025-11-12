@@ -114,10 +114,21 @@ body {
   text-align: center;
   cursor: pointer;
 }
+.cancelBtn {
+  background: #cad0db;
+  color: #fff;
+  text-align: center;
+  border-radius: 50px;
+  transition: 0.3s linear all;
+}
+.cancelBtn {
+  background: #666;
+}
 .popComEl {
   .van-popup {
-    background: none;
+    background: none !important;
     width: 100vw;
+
     .popContentBox {
       max-width: var(--pageWidth);
       background: #fff;
@@ -125,7 +136,4 @@ body {
       border-radius: 20px 20px 0 0;
     }
   }
-}
-.van-popup{
-  background: #000;
 }

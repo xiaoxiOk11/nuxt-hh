@@ -1,7 +1,7 @@
 <template>
     <div>
-        <TopNav pageTitle="Recharge">
-        </TopNav>
+        <TopNav pageTitle="Recharge" >
+            </TopNav>
         <div class="pageComContainer">
 
         </div>
@@ -11,7 +11,10 @@
 
 <script setup>
 import TopNav from '../publicComponents/TopNavBar.vue';
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
+const usePublicStore = publicStore()
 </script>
 
 

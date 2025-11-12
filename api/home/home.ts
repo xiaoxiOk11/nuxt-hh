@@ -3,6 +3,7 @@ import request from "@/api/request.ts";
  * @returns 手机号注册
  */ 
 export function joinRegister(data) {
+  console.log('data',data);
   return request({
     url: "/join/register",
     method: "POST",
@@ -117,5 +118,24 @@ export function getUploadHostService() {
 export function getPlantCurrency() {
   return request({
     url: "/setting/currency",
+  });
+}
+
+// /**    
+//  * @returns 图片验证码 
+//  */
+// export function imgVerifyConfigApi() {
+//   return request({
+//     url: "/join/imgVerifyConfig",
+//     params,
+//   });
+// }
+
+/**    
+ * @returns 注册配置 
+ */
+export function getRegisterConfig() {
+  return request({
+    url: "join/registerConfig",
   });
 }

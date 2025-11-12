@@ -108,4 +108,7 @@ const pageTransition = reactive({
 html.page-leave-active {
   overflow: hidden;
 }
+.van-popup {
+  background: #000 !important;
+}
 </style>

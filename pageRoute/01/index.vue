@@ -1,6 +1,6 @@
 <template>
     <div>
-     <Header/>
+        <Header />
         <div class="pageComContainer">
             <div class="noticeEl">
                 <van-notice-bar background="transparent" color="#fff" :left-icon="noticeIcon"
@@ -17,21 +17,21 @@
             </div>
 
             <div class="gridBox3 mt20 text_center">
-                <div class="grid3ItemEl" v-for="(item, index) in commList" :key="index">
-                    <div class="blurBg">
+                <div class="grid3ItemEl toPointer" v-for="(item, index) in commList" :key="index" @click="jumpPage(item.url)">
+                    <div class="blurBg ">
                         {{ item.name }}
                     </div>
                 </div>
             </div>
 
             <div class="mt10">
-                <div class="downImg f20 text_bold flex col_center pl30">
+                <div class="downImg f20 toPointer text_bold flex col_center pl30">
                     DownLoad APP
                 </div>
             </div>
 
             <div class="gridBox2 mt20 text_center">
-                <div class="grid2ItemEl" v-for="(item, index) in parnterList" :key="index">
+                <div class="grid2ItemEl toPointer" v-for="(item, index) in parnterList" :key="index">
                     <div class="blurBg">
                         {{ item.name }}
                     </div>
@@ -77,7 +77,7 @@
                             44444.44
                         </div>
 
-                        <div  class="f14" :class="item % 2 == 1 ? 'colorDown' : 'colorUp'">
+                        <div class="f14" :class="item % 2 == 1 ? 'colorDown' : 'colorUp'">
                             +98%
                         </div>
                     </div>
@@ -93,16 +93,18 @@
 import Header from './publicComponents/Header.vue';
 import Tabbar from './publicComponents/Tabbar.vue';
 import noticeIcon from '~/assets/images/01/icon/notice.png';
-
+import { useRouter } from 'vue-router'
 const images = [
     'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
     'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
 ];
 
+const router = useRouter()
 const commList = computed(() => {
     return [
         {
-            name: 'Recharge'
+            name: 'Recharge',
+            url:'/fund/recharge'
         },
         {
             name: 'Withdraw'
@@ -145,6 +147,11 @@ const coinFromList = computed(() => {
         },
     ]
 })
+const jumpPage = url => {
+    if (url) {
+        router.push(url)
+    }
+}
 // 
 const changeCoinFrom = (item, ind) => {
     actCoinType.value = ind

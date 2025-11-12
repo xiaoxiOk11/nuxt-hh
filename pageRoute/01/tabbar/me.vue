@@ -1,4 +1,8 @@
 <script setup>
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
+import { useRouter } from "vue-router";
+const router = useRouter()
 import Tabbar from '../publicComponents/Tabbar.vue';
 import Header from '../publicComponents/Header.vue';
 import menuIcon1 from '~/assets/images/01/icon/menu1.png';
@@ -118,6 +122,13 @@ const menuList = computed(() => {
         },
     ]
 })
+
+const showLogoutPop = ref(false)
+const loginOutHandle = () => {
+    showLogoutPop.value = false
+    localStorage.removeItem('authorization')
+    router.push('/login/beforeLogin')
+}
 </script>
 <template>
     <div>
@@ -200,8 +211,23 @@ const menuList = computed(() => {
                     </div>
                 </div>
             </div>
-            <div class="outBtn mgtb20">Sign Out</div>
+            <div class="outBtn mgtb20" @click="showLogoutPop = true">Sign Out</div>
         </div>
+
+        <van-popup v-model:show="showLogoutPop" position="center" round :style="{ width: '90%', maxWidth: '500px' }"
+            :closeable="false">
+            <div class="titleEl color000">
+                <div class="text_center pt20 f20 text_bold">{{ t('setting.s19') }}</div>
+
+                <div class="mt30 pdlr20 ">
+                    <div class="text_center f16">{{ t('setting.s20') }}</div>
+                    <div class="gridBox2 mgtb20">
+                        <div class="cancelBtn center  toPointer" @click="showLogoutPop = false">{{ t('all.c2') }}</div>
+                        <div class="contentBtn center" @click="loginOutHandle">{{ t('all.c1') }}</div>
+                    </div>
+                </div>
+            </div>
+        </van-popup>
         <Tabbar />
     </div>
 </template>
@@ -245,7 +271,6 @@ min-height: 100vh;
         color: #130040;
     }
     .contentBtn{
-        padding: 15px 0;
         border-radius: 10px;
     }
     .levelInfo{

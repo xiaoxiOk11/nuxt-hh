@@ -81,7 +81,11 @@ const loginTypeList = loginType.value.map(item => {
     return obj
 })
 const loginTypeVal = ref('')
-loginTypeVal.value = loginTypeList[0].value
+if (loginTypeList.length>1) {
+    loginTypeVal.value = loginTypeList[0].value
+} else {
+    loginTypeVal.value = 'phone'
+}
 const changeLoginType = item => {
     loginTypeVal.value = item.value
     showSuccessFlag.value = false
@@ -129,6 +133,7 @@ const onSubmit = () => {
 
 onMounted(() => {
     useLoginStore.initLoginData()
+
 })
 </script>
 
@@ -211,11 +216,10 @@ onMounted(() => {
                                     <div> <span>Agree with our</span> <span class="mainTextColor mglr5">Term Of
                                             Use</span>
                                         and
-                                    </div>
-                                    <div class="mt5">
                                         <span class="mainTextColor">Privacy Policy</span>
 
                                     </div>
+                                    
                                 </div>
                             </div>
                             <div class="actionBtn mt20  contentBtn" native-type="submit" @click="onSubmit">
