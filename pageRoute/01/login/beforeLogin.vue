@@ -124,7 +124,7 @@ onMounted(() => {
             <div class="tech-header">
                 <div class="logo-container">
                     <div class="logo-icon">
-                        <Icon icon="mdi:sine-wave" width="32" height="32" />
+                        <!-- <Icon icon="mdi:sine-wave" width="32" height="32" /> -->
                     </div>
                     <!-- Logo文本增加glitch效果 -->
                     <div class="logo-text" data-text="QUANT NEXUS">QUANT NEXUS</div>

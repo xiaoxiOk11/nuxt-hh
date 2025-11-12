@@ -113,7 +113,7 @@ router.afterEach(() => {
                 </template>
             </van-tabbar-item>
         </van-tabbar>
-        <div style="height: 60px;"></div>
+        <div style="height: 50px;"></div>
     </div>
 </template>
 

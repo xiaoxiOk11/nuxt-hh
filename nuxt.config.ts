@@ -42,10 +42,17 @@ export default defineNuxtConfig({
     pageTransition: true, // 或者 pageTransition: {}
     layoutTransition: true, // 同理
     head: {
-      title: "My App",
+      title: "航海量化",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
+      ],
+      link: [
+        {
+          rel: "icon",
+          type:"image/svg+xml",
+          href: "/ico.png",
+        },
       ],
     },
   },
