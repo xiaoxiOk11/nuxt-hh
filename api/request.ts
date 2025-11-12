@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { showToast } from "vant";
 import { publicStore } from "~/stores/publicData";
 
 interface HttpResponse<T> {

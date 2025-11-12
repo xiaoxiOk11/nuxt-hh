@@ -1,3 +1,51 @@
+<script setup>
+import Header from '../publicComponents/Header.vue';
+import Tabbar from '../publicComponents/Tabbar.vue';
+import { countryApi } from '~/api/home/home'
+const getData = () => {
+    countryApi().then(res => {
+        console.log('res', res);
+    })
+}
+getData()
+
+const cardInfo = [
+    {
+        name: 'Trial Fee',
+        value: 0
+    },
+    {
+        name: 'Profit Assets',
+        value: 0
+    },
+    {
+        name: "Today's Earnings",
+        value: 0
+    },
+    {
+        name: "Total Revenue",
+        value: 0
+    },
+    {
+        name: "Quantification Times Per Day",
+        value: 0
+    },
+    {
+        name: "Profit Ratio",
+        value: 0
+    },
+    {
+        name: "Quantifiable Number Of Days",
+        value: 0
+    },
+    {
+        name: "Countdown Days",
+        value: 0
+    },
+]
+</script>
+
+
 <template>
     <div>
         <Header />
@@ -112,54 +160,6 @@
         <Tabbar />
     </div>
 </template>
-
-<script setup>
-import Header from '../publicComponents/Header.vue';
-import Tabbar from '../publicComponents/Tabbar.vue';
-import { countryApi } from '~/api/home/home'
-const getData = () => {
-    countryApi().then(res => {
-        console.log('res',res);
-    })
-}
-getData()
-
-const cardInfo = [
-    {
-        name: 'Trial Fee',
-        value:0
-    },
-    {
-        name: 'Profit Assets',
-        value: 0
-    },
-    {
-        name: "Today's Earnings",
-        value: 0
-    },
-    {
-        name: "Total Revenue",
-        value: 0
-    },
-    {
-        name:  "Quantification Times Per Day",
-        value: 0
-    },
-    {
-        name:  "Profit Ratio",
-        value: 0
-    },
-    {
-        name:  "Quantifiable Number Of Days",
-        value: 0
-    },
-    {
-        name:  "Countdown Days",
-        value: 0
-    },
-]
-</script>
-
 
 <style lang="scss" scoped>
 .pageBoxEl{

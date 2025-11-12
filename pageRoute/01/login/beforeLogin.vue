@@ -161,14 +161,14 @@ onMounted(() => {
             </div>
 
             <div class="action-buttons">
-                <div class="btn btn-primary" @click="changePage('/')">
+                <div class="btn btn-primary" @click="changePage('/login/login')">
                     <span>Login</span>
                     <div class="btn-glow"></div>
                 </div>
                 <slot></slot>
                 <div class="signup-prompt">
                     Don't have an account?
-                    <span class="signup-link" @click="changePage('/')">
+                    <span class="signup-link" @click="changePage('/login/register')">
                         Sign Up Now
                     </span>
                 </div>

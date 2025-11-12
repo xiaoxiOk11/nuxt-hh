@@ -230,9 +230,16 @@ input {
 .colorfff{
   color: #fff;
 }
+.color000{
+  color: #000;
+}
 .fixedBotBtn{
   position: fixed;
   bottom: 0;
   width: 100%;
   max-width: var(--pageWidth);
 }
+
+// ::-webkit-scrollbar{
+//   display: none;
+// }

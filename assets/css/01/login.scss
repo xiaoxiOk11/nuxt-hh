@@ -1,0 +1,95 @@
+
+.loginPage {
+  width: 100%;
+  background: #f5f3fc;
+    // height: 100vh;
+    // overflow: scroll;
+   
+  .loginContent {
+    background: url("~/assets/images/01/login/loginBg.png") no-repeat;
+    background-size: contain;
+    background-position: top;
+    min-height: 100vh;
+  }
+
+  .rightLangEl {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px 5px 5px;
+    border-radius: 50px 0 0 50px;
+  }
+
+  .loginForm {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .loginFormContent {
+      padding: 20px;
+
+      .van-cell {
+        background: #f5f3fc;
+        margin-top: 10px;
+        border-radius: 10px;
+        height: 60px;
+        padding: 0 15px 0 10px;
+
+        input {
+          height: 60px;
+          padding: 0 15px;
+          font-size: 16px;
+        }
+
+        .van-field__left-icon {
+          // height: 60px;
+          display: flex;
+          align-items: center;
+        }
+
+        .van-field__error-message {
+          display: block;
+        }
+
+        // line-height: 50px;
+      }
+    }
+
+    .form-label {
+      color: #130040;
+    }
+  .sendCodeBtn {
+      background: var(--mainColor);
+      padding: 10px  20px;
+      border-radius: 5px;
+      // text-align: center;
+      color: #fff;
+      // margin-right: 10px;
+  
+      // min-width: 40px;
+    }
+    .gridBox2 {
+      text-align: center;
+      color: #000;
+      height: 50px;
+      line-height: 50px;
+      background: #eae6fa;
+
+      .actTypeEl {
+        background: #fff;
+      }
+    }
+  }
+}
+
+.actionBtn {
+  padding: 5px;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+.borderBtn {
+  border: 1px solid var(--mainColor);
+  color: var(--mainColor);
+  text-align: center;
+  height: 48px;
+  line-height: 48px;
+}
