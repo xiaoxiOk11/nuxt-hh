@@ -12,3 +12,15 @@ export function getRechargeTypeList(params) {
     params,
   });
 }
+
+// 
+/**
+ * @returns 充值详情
+ */ 
+export function getRechargeInfo(params) {
+  return request({
+    url: "/finance/product/info",
+    method: "GET",
+    params,
+  });
+}

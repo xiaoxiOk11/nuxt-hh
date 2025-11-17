@@ -15,8 +15,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 const usePublicStore = publicStore();
-import { getRechargeTypeList } from '~/api/realse/realse'
-
+import { getRechargeTypeList, getRechargeInfo } from '~/api/realse/realse'
 
 const selectRechargeType = computed(() => {
     return usePublicStore.selectRechargeType
