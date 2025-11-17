@@ -1,9 +1,8 @@
-import request from "@/api/request.ts";
+import request from "~/api/request.ts";
 /**
  * @returns 手机号注册
  */ 
 export function joinRegister(data) {
-  console.log('data',data);
   return request({
     url: "/join/register",
     method: "POST",

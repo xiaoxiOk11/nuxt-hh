@@ -29,8 +29,11 @@ export default defineNuxtConfig({
 
   build: {
     transpile: ["vant"],
+    
   },
-
+  devServer: {
+    host:"127.0.0.1"
+  },
   vite: {
     plugins: [
       Components({
