@@ -172,19 +172,11 @@ axiosInstance.interceptors.response.use(
     }
 
     if (error.response?.status === 401) {
-      const currentRoute = router.currentRoute.value;
+      const currentRoute = window.location.pathname;
       // 如果当前不在登录页面，则跳转到登录页
-      if (
-        currentRoute.path !== "/beforeLogin" &&
-        currentRoute.path !== "/login" &&
-        currentRoute.path !== "/register"
-      ) {
-        router.push({
-          path: "/beforeLogin",
-          query: {
-            redirect: currentRoute.fullPath,
-          },
-        });
+
+      if (!currentRoute.includes("/login")) {
+        window.location.href = "/login/beforeLogin";
       }
     }
 

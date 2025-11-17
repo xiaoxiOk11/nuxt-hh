@@ -1,7 +1,7 @@
 import request from "~/api/request.ts";
 /**
- * @returns 手机号注册
- */ 
+ * @description 手机号注册
+ */
 export function joinRegister(data) {
   return request({
     url: "/join/register",
@@ -10,8 +10,8 @@ export function joinRegister(data) {
   });
 }
 /**
- * @returns 邮箱注册
- */ 
+ * @description 邮箱注册
+ */
 export function emailRegister(data) {
   return request({
     url: "/join/email/register",
@@ -20,18 +20,18 @@ export function emailRegister(data) {
   });
 }
 /**
- * @returns 手机发送验证码
- */ 
+ * @description 手机发送验证码
+ */
 export function sendPhoneCode(data) {
   return request({
     url: "/join/sms",
     method: "POST",
-    data:data,
+    data: data,
   });
 }
 /**
- * @returns 邮箱发送验证码
- */ 
+ * @description 邮箱发送验证码
+ */
 export function sendEmailCode(data) {
   return request({
     url: "/join/email/sms",
@@ -40,16 +40,16 @@ export function sendEmailCode(data) {
   });
 }
 /**
- * @returns 获取注册信息
- */ 
+ * @description 获取注册信息
+ */
 export function registerSetting() {
   return request({
     url: "/setting/register",
   });
 }
 /**
- * @returns 登陆
- */ 
+ * @description 登陆
+ */
 export function joinLogin(data) {
   return request({
     url: "/join/login",
@@ -58,8 +58,8 @@ export function joinLogin(data) {
   });
 }
 /**
- * @returns 邮箱登陆
- */ 
+ * @description 邮箱登陆
+ */
 export function emailLogin(data) {
   return request({
     url: "/join/email/login",
@@ -68,8 +68,8 @@ export function emailLogin(data) {
   });
 }
 /**
- * @returns 获取区号
- */ 
+ * @description 获取区号
+ */
 export function countryApi() {
   return request({
     url: "/setting/country",
@@ -77,24 +77,24 @@ export function countryApi() {
 }
 
 /**
- * @returns 获取网站app内容
- */ 
+ * @description 获取网站app内容
+ */
 export function getWebSite() {
   return request({
     url: "/setting/website",
   });
 }
 /**
- * @returns 用户信息
- */ 
+ * @description 用户信息
+ */
 export function getUserInfo() {
   return request({
     url: "/user/index",
     cancelable: false, // 不可取消
   });
 }
-/** 
- * @returns 语言列表   
+/**
+ * @description 语言列表
  */
 export function langListApi() {
   return request({
@@ -102,26 +102,25 @@ export function langListApi() {
   });
 }
 /**
- * @returns 获取上传配置 
- */ 
+ * @description 获取上传配置
+ */
 export function getUploadHostService() {
   return request({
     url: "/setting/upload",
   });
 }
 
-
 /**
- * @returns 获取平台货币符号  /setting/userAgreement
- */ 
+ * @description 获取平台货币符号  /setting/userAgreement
+ */
 export function getPlantCurrency() {
   return request({
     url: "/setting/currency",
   });
 }
 
-// /**    
-//  * @returns 图片验证码 
+// /**
+//  * @description 图片验证码
 //  */
 // export function imgVerifyConfigApi() {
 //   return request({
@@ -130,8 +129,8 @@ export function getPlantCurrency() {
 //   });
 // }
 
-/**    
- * @returns 注册配置 
+/**
+ * @description 注册配置
  */
 export function getRegisterConfig() {
   return request({

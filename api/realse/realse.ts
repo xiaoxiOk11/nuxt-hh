@@ -1,10 +1,8 @@
-// api/
 import request from "~/api/request.ts";
 
-
 /**
- * @returns 充值列表
- */ 
+ * @description 充值列表
+ */
 export function getRechargeTypeList(params) {
   return request({
     url: "/finance/product/list",
@@ -13,13 +11,35 @@ export function getRechargeTypeList(params) {
   });
 }
 
-// 
 /**
- * @returns 充值详情
- */ 
+ * @description 充值详情
+ */
 export function getRechargeInfo(params) {
   return request({
     url: "/finance/product/info",
+    method: "GET",
+    params,
+  });
+}
+
+//
+/**
+ * @description 提现详情
+ */
+export function getWithdrawInfo(params) {
+  return request({
+    url: "/finance/product/withdraw/info",
+    method: "GET",
+    params,
+  });
+}
+
+/**
+ * @description 检查用户信息
+ */
+export function getWithdrawAddressInfo(params) {
+  return request({
+    url: "/finance/product/withdraw/address",
     method: "GET",
     params,
   });

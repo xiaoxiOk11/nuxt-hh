@@ -2,7 +2,11 @@ import { defineStore } from "pinia";
 import socket from "@/utils/socket.ts";
 import axios from "axios";
 import { changeDataType } from "@/utils/index";
-import { getProductInfoApi, getYahooKlineData, getYahooKlineDataApi } from "../api/trade";
+import {
+  getProductInfoApi,
+  getYahooKlineData,
+  getYahooKlineDataApi,
+} from "../api/trade";
 import { exchangeKLineDta } from "../utils";
 
 export const socketStore = defineStore("socketStoreId", {
@@ -10,9 +14,9 @@ export const socketStore = defineStore("socketStoreId", {
     // 请求参数
     reqParams: {
       type: -1,
-      range:"1d"
+      range: "1d",
     },
-    hasDefaultCoin:false,
+    hasDefaultCoin: false,
     // 响应数据
     coinList: [],
 
@@ -32,7 +36,7 @@ export const socketStore = defineStore("socketStoreId", {
     klineData: [],
     currentCoinTime: "1min",
     selectTradeType: "spot",
-    coinDetailInfo:{}
+    coinDetailInfo: {},
   }),
 
   getters: {
@@ -48,9 +52,9 @@ export const socketStore = defineStore("socketStoreId", {
         market_type: this.reqParams.type,
         pid: this.currentCoin.id,
       };
-      getProductInfoApi(data).then(res => {
-        this.coinDetailInfo = res
-      })
+      getProductInfoApi(data).then((res) => {
+        this.coinDetailInfo = res;
+      });
     },
     // 初始化Socket连接
     initSocketConnection() {
@@ -121,11 +125,10 @@ export const socketStore = defineStore("socketStoreId", {
     },
 
     /**
-     *  @returns 选择币种
+     *  @description 选择币种
      * */
     selectCoin(coin) {
       this.currentCoin = coin;
-     
     },
 
     // 更新请求参数
@@ -176,17 +179,15 @@ export const socketStore = defineStore("socketStoreId", {
       getYahooKlineDataApi({
         pro_code: this.currentCoin.pro_code,
         range: this.reqParams.range,
-        interval:'1h'
+        interval: "1h",
       }).then((res) => {
         this.klineData = exchangeKLineDta(res.chart.result[0]);
       });
-  
-      
     },
     getOptLineDataList() {
-      if (this.reqParams.type  !== 2) {
-        this.getYahooKlineData()
-        return 
+      if (this.reqParams.type !== 2) {
+        this.getYahooKlineData();
+        return;
       }
       const params = {
         period: this.currentCoinTime,

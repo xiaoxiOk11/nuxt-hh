@@ -29,10 +29,9 @@ export default defineNuxtConfig({
 
   build: {
     transpile: ["vant"],
-    
   },
   devServer: {
-    host:"127.0.0.1"
+    host: "127.0.0.1",
   },
   vite: {
     plugins: [
@@ -45,7 +44,7 @@ export default defineNuxtConfig({
     pageTransition: true, // 或者 pageTransition: {}
     layoutTransition: true, // 同理
     head: {
-      title: "航海量化",
+      title: "本地项目",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -53,7 +52,7 @@ export default defineNuxtConfig({
       link: [
         {
           rel: "icon",
-          type:"image/svg+xml",
+          type: "image/svg+xml",
           href: "/ico.png",
         },
       ],

@@ -10,7 +10,8 @@ export const publicStore = defineStore("publicStoreSCR", {
     actionLoading: false,
     loadingMsg: "",
     rechargeTypeList: [], //充值列表类型
-    selectRechargeType:{}
+    selectRechargeType: {},
+    webSiteData: {}, // 网站信息
   }),
 
   actions: {

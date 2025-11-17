@@ -8,79 +8,79 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch } from 'vue'
-import { useRouter } from 'vue-router'
-import { themeRoute } from '~/stores/theme'
-import gsap from 'gsap'
+import { ref, reactive, watch } from "vue";
+import { useRouter } from "vue-router";
+import { themeRoute } from "~/stores/theme";
+import gsap from "gsap";
+import { getWebSite } from "~/api/home/home";
+const usePublicStore = publicStore();
 
 // --- 1. 保留你现有的主题切换逻辑 ---
-const useThemeRoute = themeRoute()
+const useThemeRoute = themeRoute();
 watch(
   () => useThemeRoute.fileRoute,
   (newRoute) => {
-    // 在 nuxt.config.ts 中通过 body aatributes 或 useHead 动态添加 class/style 可能是更稳健的方式。
-    console.log('Theme route changed to:', newRoute)
     if (newRoute) {
-      import(`~/assets/css/${newRoute}/main.scss`)
+      import(`~/assets/css/${newRoute}/main.scss`);
     }
   },
   { immediate: true }
-)
+);
 
 const animations = [
   {
-    name: 'slide-up',
+    name: "slide-up",
     enter: { opacity: 0, y: 50 },
-    leave: { opacity: 0, y: -50 }
+    leave: { opacity: 0, y: -50 },
   },
   {
-    name: 'slide-down',
+    name: "slide-down",
     enter: { opacity: 0, y: -50 },
-    leave: { opacity: 0, y: 50 }
+    leave: { opacity: 0, y: 50 },
   },
   {
-    name: 'slide-left',
+    name: "slide-left",
     enter: { opacity: 0, x: 100 },
-    leave: { opacity: 0, x: -100 }
+    leave: { opacity: 0, x: -100 },
   },
   {
-    name: 'zoom-in',
+    name: "zoom-in",
     enter: { opacity: 0, scale: 0.8 },
-    leave: { opacity: 0, scale: 0.8 }
+    leave: { opacity: 0, scale: 0.8 },
   },
   {
-    name: 'fade',
+    name: "fade",
     enter: { opacity: 0 },
-    leave: { opacity: 0 }
-  }
-]
+    leave: { opacity: 0 },
+  },
+];
 
-let lastAnimationIndex = -1 
+let lastAnimationIndex = -1;
 const getRandomAnimation = () => {
-  let randomIndex
+  let randomIndex;
   do {
-    randomIndex = Math.floor(Math.random() * animations.length)
-  } while (animations.length > 1 && randomIndex === lastAnimationIndex)
+    randomIndex = Math.floor(Math.random() * animations.length);
+  } while (animations.length > 1 && randomIndex === lastAnimationIndex);
 
-  lastAnimationIndex = randomIndex
-  return animations[randomIndex]
-}
+  lastAnimationIndex = randomIndex;
+  return animations[randomIndex];
+};
 
-const currentAnimation = ref(getRandomAnimation())
+const currentAnimation = ref(getRandomAnimation());
 
-const router = useRouter()
+const router = useRouter();
 router.beforeEach((to, from, next) => {
   // 仅在实际发生页面切换时才更新动画（跳过初始加载）
   if (from.name) {
-    currentAnimation.value = getRandomAnimation()
+    currentAnimation.value = getRandomAnimation();
   }
-  next() // 必须调用 next() 以继续导航
-})
+  next(); // 必须调用 next() 以继续导航
+});
 
 // 这个对象将从 currentAnimation 中读取动画参数
 const pageTransition = reactive({
-  name: 'dynamic-gsap', 
-  mode: 'out-in',
+  name: "dynamic-gsap",
+  mode: "out-in",
 
   // onEnter(el, done) {
   //   // 使用当前选定动画的 enter 参数
@@ -100,7 +100,16 @@ const pageTransition = reactive({
   //     onComplete: done
   //   })
   // }
-})
+});
+const getWebSiteData = () => {
+  getWebSite().then((res) => {
+    usePublicStore.webSiteData = res;
+  });
+};
+onMounted(() => {
+  console.log(222);
+  getWebSiteData();
+});
 </script>
 
 <style>
