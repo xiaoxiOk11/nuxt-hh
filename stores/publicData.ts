@@ -25,7 +25,7 @@ export const publicStore = defineStore("publicStoreSCR", {
     },
   },
   persist: {
-    key: "publicStore", //如果需要对存储的密钥key进行命名
-    storage: localStorage,
+    key: "publicStore",
+    storage: persistedState.localStorage, // 只在客户端加载
   },
 });
