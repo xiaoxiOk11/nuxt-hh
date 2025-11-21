@@ -40,6 +40,11 @@ export default defineNuxtConfig({
       }),
     ],
   },
+  nitro: {
+    externals: {
+      traceInclude: ["node_modules/vue/server-renderer/**"],
+    },
+  },
   app: {
     pageTransition: true, // 或者 pageTransition: {}
     layoutTransition: true, // 同理
