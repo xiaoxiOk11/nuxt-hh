@@ -125,6 +125,7 @@ const commList = computed(() => {
     },
     {
       name: "Team",
+      url: "/mine/team",
     },
   ];
 });

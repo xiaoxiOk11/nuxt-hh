@@ -220,7 +220,7 @@ const loginOutHandle = () => {
           </div>
           <div class="">
             <UIcon
-              name="ic:baseline-keyboard-arrow-right"
+              name="material-symbols:chevron-right-rounded"
               class="hh-30 ww-30 value"
             />
           </div>

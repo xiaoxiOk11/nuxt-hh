@@ -137,3 +137,16 @@ export function getRegisterConfig() {
     url: "join/registerConfig",
   });
 }
+
+//
+
+/**
+ * @description 获取验证码
+ */
+export function sendCodeHandle(data) {
+  return request({
+    url: "user/send",
+    method: "POST",
+    data,
+  });
+}

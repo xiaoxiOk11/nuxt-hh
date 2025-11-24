@@ -18,8 +18,4 @@ const currentThemeComponent = computed(() => {
     () => import(`~/pageRoute/${useThemeRoute.fileRoute}/fund/withdraw.vue`)
   );
 });
-
-const changeTheme = () => {
-  useThemeRoute.fileRoute = useThemeRoute.fileRoute === "01" ? "02" : "01";
-};
 </script>

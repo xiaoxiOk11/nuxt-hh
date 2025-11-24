@@ -16,7 +16,7 @@ const useThemeRoute = themeRoute();
 const currentThemeComponent = computed(() => {
   if (!useThemeRoute.fileRoute) return null;
   return defineAsyncComponent(
-    () => import(`~/pageRoute/${useThemeRoute.fileRoute}/login/register.vue`)
+    () => import(`~/pageRoute/${useThemeRoute.fileRoute}/mine/share.vue`)
   );
 });
 </script>

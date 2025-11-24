@@ -16,7 +16,10 @@
             </div>
           </div>
 
-          <UIcon name="ic:baseline-keyboard-arrow-right" class="hh-30 ww-30" />
+          <UIcon
+            name="material-symbols:chevron-right-rounded"
+            class="hh-30 ww-30"
+          />
         </div>
       </div>
     </div>

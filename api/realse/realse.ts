@@ -44,3 +44,15 @@ export function getWithdrawAddressInfo(params) {
     params,
   });
 }
+//
+
+/**
+ * @description 提交提现
+ */
+export function submitWithdraw(data) {
+  return request({
+    url: "/finance/product/withdraw/submit",
+    method: "POST",
+    data,
+  });
+}
