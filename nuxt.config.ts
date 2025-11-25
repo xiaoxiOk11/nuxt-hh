@@ -4,7 +4,12 @@ import { VantResolver } from "unplugin-vue-components/resolvers";
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
-
+  routeRules: {
+    "/": { prerender: true },
+  },
+  ui: {
+    fonts: false,
+  },
   // [保留] 你的全局 CSS
   css: ["@/assets/css/public.scss"],
 

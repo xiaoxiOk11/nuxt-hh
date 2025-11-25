@@ -18,13 +18,7 @@ const currentThemeComponent = computed(() => {
   );
 });
 
-// const changeTheme = () => {
-//   if (useThemeRoute.fileRoute === "01") {
-//     useThemeRoute.fileRoute = "02";
-//   } else {
-//     useThemeRoute.fileRoute = "01";
-//   }
-// };
+
 </script>
 
 <style lang="scss" scoped></style>
