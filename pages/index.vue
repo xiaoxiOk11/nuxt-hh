@@ -17,8 +17,6 @@ const currentThemeComponent = computed(() => {
     () => import(`~/pageRoute/${useThemeRoute.fileRoute}/index.vue`)
   );
 });
-
-
 </script>
 
 <style lang="scss" scoped></style>

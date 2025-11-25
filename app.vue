@@ -1,32 +1,6 @@
 <!-- app.vue -->
 <template>
   <div>
-    <!-- PWA 更新弹窗 -->
-    <van-popup
-      v-model:show="showPwaUpdate"
-      class="pwa-update-popup"
-      position="center"
-      round
-      :close-on-click-overlay="false"
-    >
-      <div class="pwa-update-dialog">
-        <div class="pwa-update-title">发现新版本</div>
-        <div class="pwa-update-desc">
-          应用有新内容可用，点击
-          <span class="pwa-update-highlight">立即更新</span>
-          以刷新到最新版本。
-        </div>
-        <div class="pwa-update-actions">
-          <button class="btn-secondary" @click="showPwaUpdate = false">
-            下次再说
-          </button>
-          <button class="btn-primary" @click="handleConfirmUpdate">
-            立即更新
-          </button>
-        </div>
-      </div>
-    </van-popup>
-
     <!-- NuxtPage 现在会使用我们动态生成的 pageTransition 对象 -->
     <NuxtPage class="pageContainer" :transition="pageTransition" />
     <van-backTop></van-backTop>
@@ -128,33 +102,6 @@ const pageTransition = reactive({
   //   })
   // }
 });
-// ---------------- PWA 更新逻辑 ----------------
-const showPwaUpdate = ref(false);
-let updateSWFn = null;
-
-if (process.client) {
-  updateSWFn = registerSW({
-    onNeedRefresh() {
-      // 有新的 service worker，可提示用户刷新
-      showPwaUpdate.value = true;
-    },
-    // 可选：离线就绪时的回调
-    onOfflineReady() {
-      console.log("PWA 已准备好离线使用");
-    },
-  });
-}
-
-const handleConfirmUpdate = () => {
-  showPwaUpdate.value = false;
-  if (updateSWFn) {
-    // 触发 service worker 跳过等待并刷新页面
-    updateSWFn(true);
-  } else {
-    // 兜底：直接刷新
-    window.location.reload();
-  }
-};
 
 const getWebSiteData = () => {
   getWebSite().then((res) => {
@@ -162,7 +109,6 @@ const getWebSiteData = () => {
   });
 };
 onMounted(() => {
-  console.log(222);
   getWebSiteData();
 });
 </script>

@@ -13,6 +13,11 @@ declare let self: ServiceWorkerGlobalScope;
 // 预缓存
 precacheAndRoute(self.__WB_MANIFEST);
 
+// 在激活时立即接管已打开的页面
+self.addEventListener("activate", (event) => {
+  event.waitUntil(self.clients.claim());
+});
+
 // 自定义路由
 registerRoute(
   ({ url }) => url.pathname.startsWith("/api"),
