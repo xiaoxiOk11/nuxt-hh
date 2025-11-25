@@ -1,6 +1,32 @@
 <!-- app.vue -->
 <template>
   <div>
+    <!-- PWA 更新弹窗 -->
+    <van-popup
+      v-model:show="showPwaUpdate"
+      class="pwa-update-popup"
+      position="center"
+      round
+      :close-on-click-overlay="false"
+    >
+      <div class="pwa-update-dialog">
+        <div class="pwa-update-title">发现新版本</div>
+        <div class="pwa-update-desc">
+          应用有新内容可用，点击
+          <span class="pwa-update-highlight">立即更新</span>
+          以刷新到最新版本。
+        </div>
+        <div class="pwa-update-actions">
+          <button class="btn-secondary" @click="showPwaUpdate = false">
+            下次再说
+          </button>
+          <button class="btn-primary" @click="handleConfirmUpdate">
+            立即更新
+          </button>
+        </div>
+      </div>
+    </van-popup>
+
     <!-- NuxtPage 现在会使用我们动态生成的 pageTransition 对象 -->
     <NuxtPage class="pageContainer" :transition="pageTransition" />
     <van-backTop></van-backTop>
@@ -13,6 +39,7 @@ import { useRouter } from "vue-router";
 import { themeRoute } from "~/stores/theme";
 import gsap from "gsap";
 import { getWebSite } from "~/api/home/home";
+import { registerSW } from "virtual:pwa-register";
 const usePublicStore = publicStore();
 
 // --- 1. 保留你现有的主题切换逻辑 ---
@@ -101,6 +128,34 @@ const pageTransition = reactive({
   //   })
   // }
 });
+// ---------------- PWA 更新逻辑 ----------------
+const showPwaUpdate = ref(false);
+let updateSWFn = null;
+
+if (process.client) {
+  updateSWFn = registerSW({
+    onNeedRefresh() {
+      // 有新的 service worker，可提示用户刷新
+      showPwaUpdate.value = true;
+    },
+    // 可选：离线就绪时的回调
+    onOfflineReady() {
+      console.log("PWA 已准备好离线使用");
+    },
+  });
+}
+
+const handleConfirmUpdate = () => {
+  showPwaUpdate.value = false;
+  if (updateSWFn) {
+    // 触发 service worker 跳过等待并刷新页面
+    updateSWFn(true);
+  } else {
+    // 兜底：直接刷新
+    window.location.reload();
+  }
+};
+
 const getWebSiteData = () => {
   getWebSite().then((res) => {
     usePublicStore.webSiteData = res;
@@ -117,7 +172,71 @@ onMounted(() => {
 html.page-leave-active {
   overflow: hidden;
 }
+
+/* 全局 Vant popup 默认样式可以按需调整 */
 .van-popup {
-  background: #000 !important;
+  background: transparent;
+}
+
+.pwa-update-popup {
+  width: 80%;
+  max-width: 320px;
+}
+
+.pwa-update-dialog {
+  background: #111827;
+  color: #f9fafb;
+  padding: 20px 18px 16px;
+  border-radius: 14px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.pwa-update-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.pwa-update-desc {
+  line-height: 1.6;
+  color: #e5e7eb;
+}
+
+.pwa-update-highlight {
+  color: #38bdf8;
+  font-weight: 500;
+}
+
+.pwa-update-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.pwa-update-actions .btn-secondary,
+.pwa-update-actions .btn-primary {
+  outline: none;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.pwa-update-actions .btn-secondary {
+  background: #111827;
+  color: #9ca3af;
+  border: 1px solid rgba(156, 163, 175, 0.35);
+}
+
+.pwa-update-actions .btn-primary {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #f9fafb;
+}
+
+.pwa-update-actions .btn-primary:active {
+  opacity: 0.9;
 }
 </style>

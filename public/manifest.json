@@ -1,0 +1,23 @@
+{
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "description": "test pwa",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "name": "JJBB",
+  "short_name": "DJB",
+  "start_url": "/?from=pwa",
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "xxx",
+      "url": "xxx"
+    }
+  ]
+}

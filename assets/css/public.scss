@@ -1,18 +1,19 @@
-*{
-    padding: 0; 
-    margin: 0;
+* {
+  padding: 0;
+  margin: 0;
 }
-body{
-    --pageWidth:450px;
+body {
+  --pageWidth: 450px;
+  min-width: 450px;
   overflow-x: hidden;
 }
-.pageContainer{
-    max-width: var(--pageWidth);
-    // background: pink;
-    margin: 0 auto;
-    min-height: 100vh;
+.pageContainer {
+  max-width: var(--pageWidth);
+  // background: pink;
+  margin: 0 auto;
+  min-height: 100vh;
 }
-.toPointer{
+.toPointer {
   cursor: pointer;
 }
 
@@ -110,24 +111,22 @@ input {
 .gridBox2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-
+  gap: 10px;
 }
 .gridBox3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-
+  gap: 10px;
 }
 .gridBox4 {
   display: grid;
-        gap: 10px;
+  gap: 10px;
 
   grid-template-columns: repeat(4, 1fr);
 }
 .gridBox5 {
   display: grid;
-        gap: 10px;
+  gap: 10px;
 
   grid-template-columns: repeat(5, 1fr);
 }
@@ -146,7 +145,7 @@ input {
   overflow: hidden;
 }
 
-.nodeHeight{
+.nodeHeight {
   height: 5rem;
 }
 .textLeft {
@@ -155,7 +154,6 @@ input {
 .textRight {
   text-align: right;
 }
-
 
 @for $i from 1 to 100 {
   .mgtb#{$i} {
@@ -217,23 +215,21 @@ input {
   .hh-#{$i} {
     height: #{$i}#{"px"};
   }
- 
 
   .f#{$i} {
     font-size: #{$i}px;
   }
- 
 }
-.color999{
+.color999 {
   color: #999;
 }
-.colorfff{
+.colorfff {
   color: #fff;
 }
-.color000{
+.color000 {
   color: #000;
 }
-.fixedBotBtn{
+.fixedBotBtn {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -243,4 +239,3 @@ input {
 // ::-webkit-scrollbar{
 //   display: none;
 // }
-

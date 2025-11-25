@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt", // 新增: Pinia 持久化
     "@nuxtjs/i18n", // 新增: i18n
+    "@vite-pwa/nuxt",
   ],
 
   // [新增] 为 i18n 模块提供配置
@@ -36,7 +37,24 @@ export default defineNuxtConfig({
     transpile: ["vant"],
   },
   devServer: {
-    host: "127.0.0.1",
+    host: "localhost",
+  },
+  pwa: {
+    registerType: "autoUpdate",
+    workbox: {
+      navigateFallback: "/",
+    },
+    devOptions: {
+      enabled: true,
+      suppressWarnings: true,
+      navigateFallbackAllowlist: [/^\/$/],
+    },
+    srcDir: "public",
+    filename: "sw.ts",
+    strategies: "injectManifest",
+    injectManifest: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico,txt,json}"],
+    },
   },
   vite: {
     plugins: [
@@ -54,7 +72,6 @@ export default defineNuxtConfig({
     pageTransition: true, // 或者 pageTransition: {}
     layoutTransition: true, // 同理
     head: {
-      title: "本地项目",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -65,8 +82,11 @@ export default defineNuxtConfig({
           type: "image/svg+xml",
           href: "/ico.png",
         },
+        {
+          rel: "manifest",
+          href: "/manifest.json",
+        },
       ],
     },
   },
-  routeRules: {},
 });
