@@ -3,7 +3,7 @@
   <div>
     <!-- NuxtPage 现在会使用我们动态生成的 pageTransition 对象 -->
     <NuxtPage class="pageContainer" :transition="pageTransition" />
-    <van-backTop></van-backTop>
+    <van-backTop :bottom="60" :right="10"></van-backTop>
   </div>
 </template>
 
