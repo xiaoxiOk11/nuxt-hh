@@ -71,7 +71,6 @@ export default defineNuxtConfig({
   app: {
     pageTransition: true, // 或者 pageTransition: {}
     layoutTransition: true, // 同理
-
     head: {
       htmlAttrs: {
         lang: "en",
@@ -82,11 +81,6 @@ export default defineNuxtConfig({
         { name: "viewport", content: "width=device-width, initial-scale=1" },
       ],
       link: [
-        {
-          rel: "icon",
-          type: "image/svg+xml",
-          href: "/ico.png",
-        },
         {
           rel: "manifest",
           href: "/manifest.json",

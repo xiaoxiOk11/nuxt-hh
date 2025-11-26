@@ -10,8 +10,8 @@
       "type": "image/png"
     }
   ],
-  "name": "JJBB",
-  "short_name": "DJB",
+  "name": "Project Test",
+  "short_name": "P T",
   "start_url": "/?from=pwa",
   "related_applications": [
     {
